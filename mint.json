@@ -1,10 +1,10 @@
 {
   "$schema": "https://mintlify.com/schema.json",
   "name": "Documentation",
-  "favicon": "/favicon.png",
+  "favicon": "/favicon.svg",
   "logo": {
-    "light": "/logo/light.png",
-    "dark": "/logo/dark.png"
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
   },
   "colors": {
     "primary": "#4F46E5",
