@@ -7,6 +7,10 @@
     "light": "#E0E7FF",
     "dark": "#312E81"
   },
+  "modeToggle": {
+    "isHidden": true,
+    "default": "dark"
+  },
   "navigation": {
     "versions": [
       {
