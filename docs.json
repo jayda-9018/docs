@@ -4,9 +4,9 @@
   "name": "음성 API 문서",
   "description": "음성 API를 사용하여 텍스트를 자연스러운 음성으로 변환하는 방법을 알아보세요.",
   "colors": {
-    "primary": "#4F46E5",
-    "light": "#E0E7FF",
-    "dark": "#312E81"
+    "primary": "#17e5e0",
+    "light": "#17e5e0",
+    "dark": "#17e5e0"
   },
   "navigation": {
     "versions": [
@@ -16,7 +16,6 @@
         "tabs": [
           {
             "tab": "사용자 가이드",
-            "icon": "book-open",
             "groups": [
               {
                 "group": "시작하기",
@@ -44,7 +43,6 @@
           },
           {
             "tab": "API 레퍼런스",
-            "icon": "code",
             "groups": [
               {
                 "group": "API 사용하기",
@@ -76,7 +74,6 @@
           },
           {
             "tab": "샌드박스",
-            "icon": "box",
             "groups": [
               {
                 "group": "샌드박스 이용하기",
@@ -104,15 +101,18 @@
           "anchors": [
             {
               "anchor": "개발자 콘솔",
+              "icon": "code",
               "href": "https://console.supertoneapi.com"
             },
             {
               "anchor": "커뮤니티",
+              "icon": "discord",
               "href": "https://discord.com/invite/M3h5GJzQbG"
             },
             {
               "anchor": "고객 지원",
-              "href": "https://support.supertone.ai/hc/en-us/categories/10267196754959-Play?_gl=1*14usson*_gcl_au*Mzk2MjIxMTM3LjE3NDUyMTU5OTM."
+              "icon": "headset",
+              "href": "https://support.supertone.ai/hc/en-us/categories/10267196754959-Play?_gl=1*1q1daad*_gcl_au*MTk2NjM5MDExMy4xNzQ3NTc2MzUx"
             }
           ]
         }
@@ -122,7 +122,6 @@
         "tabs": [
           {
             "tab": "ユーザーガイド",
-            "icon": "book-open",
             "groups": [
               {
                 "group": "はじめに",
@@ -150,7 +149,6 @@
           },
           {
             "tab": "API リファレンス",
-            "icon": "code",
             "groups": [
               {
                 "group": "API の使用",
@@ -182,7 +180,6 @@
           },
           {
             "tab": "サンドボックス",
-            "icon": "box",
             "groups": [
               {
                 "group": "サンドボックスの使用",
@@ -210,15 +207,18 @@
           "anchors": [
             {
               "anchor": "開発者コンソール",
+              "icon": "code",
               "href": "https://console.supertoneapi.com"
             },
             {
               "anchor": "コミュニティ",
+              "icon": "discord",
               "href": "https://discord.com/invite/M3h5GJzQbG"
             },
             {
               "anchor": "カスタマーサポート",
-              "href": "https://support.supertone.ai/hc/en-us/categories/10267196754959-Play?_gl=1*14usson*_gcl_au*Mzk2MjIxMTM3LjE3NDUyMTU5OTM."
+              "icon": "headset",
+              "href": "https://support.supertone.ai/hc/en-us/categories/10267196754959-Play?_gl=1*ms94mv*_gcl_au*MTk2NjM5MDExMy4xNzQ3NTc2MzUx"
             }
           ]
         }
@@ -228,7 +228,6 @@
         "tabs": [
           {
             "tab": "User Guide",
-            "icon": "book-open",
             "groups": [
               {
                 "group": "Getting Started",
@@ -256,7 +255,6 @@
           },
           {
             "tab": "API Reference",
-            "icon": "code",
             "groups": [
               {
                 "group": "Using the API",
@@ -288,7 +286,6 @@
           },
           {
             "tab": "Sandbox",
-            "icon": "box",
             "groups": [
               {
                 "group": "Using the Sandbox",
@@ -316,15 +313,18 @@
           "anchors": [
             {
               "anchor": "Developer Console",
+              "icon": "code",
               "href": "https://console.supertoneapi.com"
             },
             {
               "anchor": "Community",
+              "icon": "discord",
               "href": "https://discord.com/invite/M3h5GJzQbG"
             },
             {
               "anchor": "Customer Support",
-              "href": "https://support.supertone.ai/hc/en-us/categories/10267196754959-Play?_gl=1*14usson*_gcl_au*Mzk2MjIxMTM3LjE3NDUyMTU5OTM."
+              "icon": "headset",
+              "href": "https://support.supertone.ai/hc/en-us/categories/10267196754959-Play?_gl=1*ixzul7*_gcl_au*MTk2NjM5MDExMy4xNzQ3NTc2MzUx"
             }
           ]
         }
@@ -346,6 +346,11 @@
     },
     "mdx": {
       "server": "https://supertoneapi.com"
+    },
+    "maintainOrder": true,
+    "examples": {
+      "defaults": "all",
+      "languages": ["bash", "javascript", "go", "python", "php", "java"]
     }
   },
   "appearance": {
@@ -356,12 +361,56 @@
     "codeblocks": "dark",
     "eyebrows": "section"
   },
+  "fonts": {
+    "heading": {
+      "family": "Noto Sans"
+    },
+    "body": {
+      "family": "Noto Sans"
+    }
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Research",
+        "href": "https://www.supertone.ai/company?scrollTo=company-research"
+      },
+      {
+        "label": "Newsroom",
+        "href": "https://www.supertone.ai/company?scrollTo=company-newsroom"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Go to Supertone.ai",
+      "href": "https://www.supertone.ai"
+    }
+  },
   "footer": {
     "socials": {
-      "website": "https://supertone.ai",
-      "github": "https://github.com/supertone",
-      "discord": "https://discord.com/invite/M3h5GJzQbG"
-    }
+      "x-twitter": "https://x.com/Supertone_ai",
+      "discord": "https://discord.com/invite/M3h5GJzQbG",
+      "linkedin": "https://www.linkedin.com/company/supertone-ai/"
+    },
+    "links": [
+      {
+        "header": "Legal",
+        "items": [
+          {
+            "label": "Terms of Service",
+            "href": "https://supertone.notion.site/Supertone-API-Terms-of-Service-15abc844cf5680258168d03862993deb?pvs=4"
+          },
+          {
+            "label": "Privacy Policy",
+            "href": "https://supertone.notion.site/Privacy-Policy-2024-09-04-6eacb9c77aa54d28a0600fe8f6389296?pvs=4"
+          },
+          {
+            "label": "Enterprise",
+            "href": "https://docs.google.com/forms/d/1YexQpjpK0ZEou12blTytkZLqvrV-Uv95GbhxoOQ54R8/edit"
+          }
+        ]
+      }
+    ]
   },
   "banner": {
     "content": "샌드박스는 마이그레이션을 위한 임시 환경입니다. 2025년 9월까지만 운영됩니다.",
