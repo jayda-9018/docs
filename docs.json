@@ -334,7 +334,7 @@
     "light": "/logo/light.png",
     "dark": "/logo/dark.png"
   },
-  "favicon": "/favicon.png",
+  "favicon": "/favicon.svg",
   "search": {
     "prompt": "API 문서 검색..."
   },
@@ -342,14 +342,17 @@
     "openapi": "/openapi.json",
     "playground": {
       "display": "interactive"
+    },
+    "mdx": {
+      "server": "https://supertoneapi.com"
     }
   },
   "appearance": {
-    "default": "system",
-    "strict": false
+    "default": "dark",
+    "strict": true
   },
   "styling": {
-    "codeblocks": "system",
+    "codeblocks": "dark",
     "eyebrows": "section"
   },
   "footer": {
