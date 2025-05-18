@@ -348,14 +348,6 @@
       "server": "https://supertoneapi.com"
     }
   },
-  "appearance": {
-    "default": "dark",
-    "strict": true
-  },
-  "styling": {
-    "codeblocks": "dark",
-    "eyebrows": "section"
-  },
   "footer": {
     "socials": {
       "website": "https://supertone.ai",
