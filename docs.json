@@ -325,6 +325,10 @@
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
   },
+  "appearance": {
+    "default": "dark",
+    "strict": "false"
+  },
   "api": {
     "openapi": "/openapi.json",
     "playground": {
