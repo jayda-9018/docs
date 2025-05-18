@@ -257,7 +257,7 @@
             "tab": "API Reference",
             "groups": [
               {
-                "group": "Using the API",
+                "group": "Supertone API",
                 "pages": [
                   "en/api-reference/introduction",
                   "en/api-reference/authentication"
