@@ -1,6 +1,5 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "theme": "mint",
   "name": "Supertone API Documentation",
   "colors": {
     "primary": "#4F46E5",
