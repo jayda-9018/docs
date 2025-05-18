@@ -348,12 +348,22 @@
       "display": "interactive"
     },
     "mdx": {
-      "server": "https://supertoneapi.com"
+      "server": "https://supertoneapi.com",
+      "auth": {
+        "method": "bearer",
+        "name": "API Key"
+      }
     },
     "maintainOrder": true,
     "examples": {
       "defaults": "all",
       "languages": ["bash", "javascript", "go", "python", "php", "java"]
+    },
+    "paramFields": {
+      "expanded": "none"
+    },
+    "authentication": {
+      "visible": false
     }
   },
   "appearance": {
