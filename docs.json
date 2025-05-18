@@ -335,7 +335,7 @@
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/logo/favicon.svg",
   "search": {
     "prompt": "API 문서 검색..."
   },
