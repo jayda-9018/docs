@@ -7,7 +7,6 @@
     "light": "#E0E7FF",
     "dark": "#312E81"
   },
-  "favicon": "/favicon.svg",
   "navigation": {
     "versions": [
       {
@@ -324,6 +323,10 @@
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
+  },
+  "favicon": {
+    "light": "/favicon.svg",
+    "dark": "/favicon.svg"
   },
   "appearance": {
     "default": "dark",
