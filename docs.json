@@ -340,7 +340,7 @@
   },
   "favicon": "favicon.svg",
   "search": {
-    "prompt": "API 문서 검색..."
+    "prompt": "Search Documentation"
   },
   "api": {
     "openapi": "/openapi.json",
