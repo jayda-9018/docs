@@ -37,15 +37,6 @@
               ],
               "type": "string"
             }
-          },
-          {
-            "name": "x-tts-engine",
-            "required": false,
-            "in": "header",
-            "description": "Choose TTS engine: \"supercage\", \"torchserve\", \"sagemaker\"",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "requestBody": {
@@ -406,11 +397,6 @@
         },
         "tags": [
           "API"
-        ],
-        "security": [
-          {
-            "access-token": []
-          }
         ]
       }
     },
@@ -645,15 +631,6 @@
                 "wav",
                 "mp3"
               ],
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-tts-engine",
-            "in": "header",
-            "description": "Choose TTS engine: \"supercage\" or \"torchserve\"",
-            "required": false,
-            "schema": {
               "type": "string"
             }
           }
@@ -1043,11 +1020,6 @@
         },
         "tags": [
           "API V1"
-        ],
-        "security": [
-          {
-            "access-token": []
-          }
         ]
       }
     },
@@ -1090,11 +1062,6 @@
         },
         "tags": [
           "API V1"
-        ],
-        "security": [
-          {
-            "access-token": []
-          }
         ]
       }
     }
