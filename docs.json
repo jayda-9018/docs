@@ -1,18 +1,17 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "음성 API 문서",
-  "description": "음성 API를 사용하여 텍스트를 자연스러운 음성으로 변환하는 방법을 알아보세요.",
+  "name": "Supertone API Documentation",
   "colors": {
     "primary": "#4F46E5",
     "light": "#E0E7FF",
     "dark": "#312E81"
   },
+  "favicon": "/favicon.svg",
   "navigation": {
     "versions": [
       {
         "version": "한국어",
-        "default": true,
         "tabs": [
           {
             "tab": "사용자 가이드",
@@ -326,10 +325,6 @@
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
   },
-  "favicon": "/favicon.svg",
-  "search": {
-    "prompt": "API 문서 검색..."
-  },
   "api": {
     "openapi": "/openapi.json",
     "playground": {
@@ -349,8 +344,5 @@
   "banner": {
     "content": "샌드박스는 마이그레이션을 위한 임시 환경입니다. 2025년 6월 6일까지만 운영됩니다.",
     "dismissible": true
-  },
-  "seo": {
-    "indexing": "all"
   }
 }
