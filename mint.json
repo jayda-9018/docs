@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Documentation",
+  "name": "Supertone API Documentation",
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
@@ -102,7 +102,7 @@
         {
           "group": "시작하기",
           "pages": [
-            "ko/user-guide/index",
+            "ko/user-guide/welcome",
             "ko/user-guide/quickstart",
             "ko/user-guide/text-to-speech-guide"
           ]
@@ -190,7 +190,7 @@
         {
           "group": "はじめに",
           "pages": [
-            "ja/user-guide/index",
+            "ja/user-guide/welcome",
             "ja/user-guide/quickstart",
             "ja/user-guide/text-to-speech-guide"
           ]
@@ -278,7 +278,7 @@
         {
           "group": "Getting Started",
           "pages": [
-            "en/user-guide/index",
+            "en/user-guide/welcome",
             "en/user-guide/quickstart",
             "en/user-guide/text-to-speech-guide"
           ]
