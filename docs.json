@@ -233,7 +233,7 @@
               {
                 "group": "Getting Started",
                 "pages": [
-                  "en/user-guide/index",
+                  "en/user-guide/welcome",
                   "en/user-guide/quickstart",
                   "en/user-guide/text-to-speech-guide"
                 ]
