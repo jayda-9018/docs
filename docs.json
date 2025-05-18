@@ -28,6 +28,7 @@
               {
                 "group": "지원 및 리소스",
                 "pages": [
+                  "ko/user-guide/pricing-plan",
                   "ko/user-guide/rate-limits",
                   "ko/user-guide/handling-errors", 
                   "ko/user-guide/faq"
@@ -134,6 +135,7 @@
               {
                 "group": "サポートとリソース",
                 "pages": [
+                  "ja/user-guide/pricing-plan",
                   "ja/user-guide/rate-limits",
                   "ja/user-guide/handling-errors",
                   "ja/user-guide/faq"
@@ -240,6 +242,7 @@
               {
                 "group": "Support & Resources",
                 "pages": [
+                  "en/user-guide/pricing-plan",
                   "en/user-guide/rate-limits",
                   "en/user-guide/handling-errors",
                   "en/user-guide/faq"
