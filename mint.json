@@ -1,32 +1,71 @@
 {
   "$schema": "https://mintlify.com/schema.json",
   "name": "Documentation",
-  "favicon": "/favicon.svg",
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "dark": "/logo/dark.svg",
+    "light": "/logo/light.svg"
   },
+  "favicon": "/logo/favicon.svg",
   "colors": {
-    "primary": "#4F46E5",
-    "light": "#E0E7FF",
-    "dark": "#312E81",
+    "primary": "#17e5e0",
+    "light": "#17e5e0",
+    "dark": "#17e5e0",
     "background": {
-      "light": "#FFFFFF",
-      "dark": "#111111"
+      "dark": "#161616",
+      "light": "#ffffff"
+    },
+    "anchors": {
+      "from": "#17e5e0",
+      "to": "#17e5e0"
     }
   },
   "modeToggle": {
-    "default": "dark",
-    "isHidden": true
+  "isHidden": true,
+  "default": "dark"
+  },
+  "font": {
+    "headings": {
+      "family": "Noto Sans"
+    },
+    "body": {
+      "family": "Noto Sans"
+    }
   },
   "api": {
     "baseUrl": "https://supertoneapi.com",
     "playground": {
       "mode": "show"
+    },
+    "maintainOrder": true,
+    "request": {
+      "example": {
+        "showOptionalParams": true,
+        "languages": [
+          "bash",
+          "javascript",
+          "go",
+          "python",
+          "php",
+          "java"
+        ]
+      }
     }
   },
-  "codeBlock": {
-    "mode": "dark"
+  "topbarLinks": [
+    {
+      "name": "Research",
+      "url": "https://www.supertone.ai/company?scrollTo=company-research"
+    },
+    {
+      "name": "Newsroom",
+      "url": "https://www.supertone.ai/company?scrollTo=company-newsroom"
+    }
+  ],
+  "topbarCtaButton": {
+    "type": "link",
+    "name": "Go to Supertone.ai",
+    "url": "https://www.supertone.ai",
+    "style": "pill"
   },
   "versions": [
     {
@@ -320,13 +359,35 @@
       ]
     }
   ],
-  "footerSocials": {
-    "website": "https://supertone.ai",
-    "github": "https://github.com/supertone",
-    "discord": "https://discord.com/invite/M3h5GJzQbG"
+  "footer": {
+    "links": [
+      {
+        "title": "Legal",
+        "links": [
+          {
+            "label": "Terms of Service",
+            "url": "https://supertone.notion.site/Supertone-API-Terms-of-Service-15abc844cf5680258168d03862993deb?pvs=4"
+          },
+          {
+            "label": "Privacy Policy", 
+            "url": "https://supertone.notion.site/Privacy-Policy-2024-09-04-6eacb9c77aa54d28a0600fe8f6389296?pvs=4"
+          },
+          {
+            "label": "Enterprise", 
+            "url": "https://docs.google.com/forms/d/1YexQpjpK0ZEou12blTytkZLqvrV-Uv95GbhxoOQ54R8/edit"
+          }
+        ]
+      }
+    ]
   },
-  "search": {
-    "prompt": "API 문서 검색...",
-    "location": "top"
+  "footerSocials": {
+    "x": "https://x.com/Supertone_ai",
+    "discord": "https://discord.com/invite/M3h5GJzQbG",
+    "linkedin": "https://www.linkedin.com/company/supertone-ai/"
+  },
+  "feedback": {
+    "thumbsRating": false,
+    "suggestEdit": true,
+    "raiseIssue": true
   }
 }
