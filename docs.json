@@ -80,8 +80,8 @@
                 "group": "샌드박스 이용하기",
                 "pages": [
                   "ko/sandbox/important-notice",
-                  "ko/sandbox/replace-voice-ids",
                   "ko/sandbox/2-step-migration",
+                  "ko/sandbox/replace-voice-ids",
                   "ko/sandbox/faq"
                 ]
               },
@@ -188,8 +188,8 @@
                 "group": "サンドボックスの使用",
                 "pages": [
                   "ja/sandbox/important-notice",
-                  "ja/sandbox/replace-voice-ids",
                   "ja/sandbox/2-step-migration",
+                  "ja/sandbox/replace-voice-ids",
                   "ja/sandbox/faq"
                 ]
               },
@@ -296,8 +296,8 @@
                 "group": "Using the Sandbox",
                 "pages": [
                   "en/sandbox/important-notice",
-                  "en/sandbox/replace-voice-ids",
                   "en/sandbox/2-step-migration",
+                  "en/sandbox/replace-voice-ids",
                   "en/sandbox/faq"
                 ]
               },
