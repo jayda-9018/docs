@@ -1,1 +1,50 @@
+---
+title: "Text To Speech"
+description: "テキストを音声に変換するTTS APIのリクエスト構造とパラメータの使用方法、エラーの注意事項を案内します。"
+openapi: "/openapi.json POST /sandbox/text-to-speech/{voice_id}"
+---
 
+指定したボイスでテキストを音声に変換する**TTS（Text-to-Speech）API**です。\
+このAPIを通じて希望の文章を自然な音声で生成することができます。
+
+### 基本的な使用方法
+- `{voice_id}`：**キャラクター単位のID**のみ使用可能
+- `language`、`style`、`model`などのパラメータは**Request Body**に含まれます
+
+### Request Body項目説明
+| 項目               | 必須 | 説明                                                                      |
+| :--------------- | :-- | :---------------------------------------------------------------------- |
+| `text`           | ✅  | 変換するテキスト。最大300文字まで入力可能                                              |
+| `language`       | ✅  | テキストの言語。`ko`、`en`、`ja`のいずれか                                        |
+| `style`          | ❌  | 感情スタイル。例：`neutral`、`happy`、`sad`など。指定しない場合は該当キャラクターのデフォルトスタイルが適用されます |
+| `model`          | ❌  | 使用モデル。デフォルトは`sona_speech_1`。現在はこのモデルのみ使用可能                         |
+| `voice_settings` | ❌  | 音程/速度調整。`pitch_shift`、`pitch_variance`、`speed`フィールドを含む（デフォルト値：0、1、1） |
+
+### 使用例
+```http
+POST /sandbox/text-to-speech/{voice_id}
+Content-Type: application/json
+x-sup-api-key: [YOUR_API_KEY]
+{
+  "text": "Thank you for calling.",
+  "language": "en",
+  "style": "happy",
+  "model": "sona_speech_1",
+  "voice_settings": {
+    "pitch_shift": 0,
+    "pitch_variance": 1,
+    "speed": 1
+  }
+}
+```
+
+### レスポンス
+- レスポンス本文は**バイナリオーディオストリーム**として返され、デフォルト形式は`wav`
+- クエリパラメータとして`output_format=mp3`を渡すとmp3形式でも応答可能
+- `X-Audio-Length`ヘッダーを通じて音声の長さ（秒）を確認できます
+
+### 注意事項
+- `voice_id`は**既存の**`{character-language-style}`**形式ではなく、キャラクター単位のID**である必要があります。
+- `text`の長さが**300文字を超えると400エラー**が発生します。
+- `style`がない場合も呼び出し可能ですが、キャラクターによってデフォルトスタイルが異なる場合があるため、Get Voices APIを呼び出してデフォルトスタイルを確認してください（スタイル配列の最初に来る値がデフォルト）。
+- レスポンスの音声ファイルは直接保存したり再生したりすることができます（クライアントに応じて適切な処理が必要）。
