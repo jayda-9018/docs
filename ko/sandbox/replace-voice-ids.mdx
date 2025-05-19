@@ -5,9 +5,9 @@ description: "기존 voice_id를 새 캐릭터 기반 ID로 교체하는 방법�
 
 샌드박스 환경에서는 기존 보이스 ID 체계가 **완전히 새롭게 개편**됩니다.\
 기존의 `{character-language-style}` 형태의 복잡한 보이스 ID는 사라지고,\
-이제는 **캐릭터 단위의 **`voice_id`**\+ 파라미터(** `language`**, **`style`**) 조합**으로 간결하게 호출합니다.
+이제는 ****`캐릭터 단위의 voice_id+ 파라미터(`**** `language`****`, style) 조합`****으로 간결하게 호출합니다.
 
-### 보이스 ID 매핑표 다운로드
+### 🗂 보이스 ID 매핑표 다운로드
 
 > 🔗 [Voice ID 매핑 시트 보기](https://docs.google.com/spreadsheets/d/1RPP9rxE8lWKrkhU91pdHUxOfYGEpqRSDaIybmVBFFZ0/edit?usp=sharing)
 
@@ -22,7 +22,7 @@ description: "기존 voice_id를 새 캐릭터 기반 ID로 교체하는 방법�
 해당 매핑표에는 캐릭터별 다양한 스타일 조합이 포함되어 있으며,\
 **기존에 없던 캐릭터**나 **신규 스타일**도 대거 추가되어 있습니다.
 
-### 교체 방법
+### ✅ 교체 방법
 
 1. **기존에 사용하던 Old Voice ID를 매핑표에서 검색**하세요.
 2. **해당하는 New Voice ID와 함께, language/style 파라미터를 추출**합니다.
@@ -37,13 +37,13 @@ POST /sandbox/text-to-speech/{91992bbd4758bdcf9c9b0}
 }
 ```
 
-### 참고 사항
+### 🧭 참고 사항
 
 - 대부분의 경우, `style`은 `neutral`이 기본값이며 optional입니다.\
   입력하지 않으면 시스템에 설정된 기본 스타일로 음성이 생성됩니다.
 - 새로운 시스템에서는 **같은 캐릭터 ID로 다양한 스타일/언어를 선택적으로 호출**할 수 있습니다.
 
-### 찾는 보이스 ID가 없나요?
+### ❓ 찾는 보이스 ID가 없나요?
 
 매핑표에서 **기존에 사용하던 Old Voice ID를 찾을 수 없다면**,\
 이는 해당 보이스가 새 모델에서 지원되지 않거나 통합되었을 수 있습니다.\
