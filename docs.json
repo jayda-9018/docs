@@ -189,7 +189,8 @@
                 "pages": [
                   "ja/sandbox/important-notice",
                   "ja/sandbox/replace-voice-ids",
-                  "ja/sandbox/2-step-migration"
+                  "ja/sandbox/2-step-migration",
+                  "ja/sandbox/faq"
                 ]
               },
               {
@@ -296,7 +297,8 @@
                 "pages": [
                   "en/sandbox/important-notice",
                   "en/sandbox/replace-voice-ids",
-                  "en/sandbox/2-step-migration"
+                  "en/sandbox/2-step-migration",
+                  "en/sandbox/faq"
                 ]
               },
               {
