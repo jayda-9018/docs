@@ -1,1 +1,44 @@
+---
+title: "What is Sandbox?"
+description: "A temporary test environment introduced due to changes in Supertone API structure, allowing you to preview the new calling methods."
+---
 
+Supertone API will officially grand open on May 28, 2025, along with the end of the closed beta.\
+Accordingly, some call structures, parameters, and voice ID systems of the existing API (`v1` endpoint) will be changed.
+
+To help you **reflect and test these changes without service interruption**,\
+Supertone provides a **temporary sandbox environment from May 19 to June 6, 2025**.
+
+### 🔧 What is Sandbox?
+
+Sandbox is a **temporary test environment where you can practice the new calling methods** of Supertone API (TTS models, voice ID, style parameters, etc.).\
+Even users who have already applied the existing `v1` API to their live environment can try migrating to the new structure in advance through the sandbox.
+
+### 🕒 Operation Period
+
+> **May 19, 2025 (Mon) – June 6, 2025 (Fri)**\
+> This is a temporary environment provided for about 3 weeks.
+
+### 🧭 Why You Need Sandbox
+
+- There have been **important structural changes** to the existing API calling method due to the grand opening.
+- In particular, the voice ID in the format of `{character-language-style}` has been **simplified to character ID unit**, and instead, **style and language have been separated as parameters**.
+- Therefore, sandbox is necessary for users who find it **difficult to modify their existing API call code immediately** or\
+  need to **test the transition without service interruption**.
+
+### ⚙️ Summary of Changes
+
+| Item | Existing v1 API | After Change (Sandbox and Official) |
+| :----- | :----------------- | :------------------------------------ |
+| Voice ID | `{serin-ko-happy}` | `{serin}` \+ `language`, `style` parameters |
+| Style Specification | Included in Voice ID | Separated as `style` parameter |
+| Model Name | `"pro"`, `"turbo"` | `"sona_speech_1"` |
+| Text Length | Maximum 200 characters | Maximum 300 characters |
+| Billing Method | Post-paid ($0.1 per minute) | Credit-based pricing (integrated with Play) |
+
+### 📝 Notes
+
+- **Actual credits will be deducted** in the sandbox environment,\
+  so you must **charge credits through a plan registered in Play** before testing.
+- The existing post-paid system is no longer supported, and\
+  if you are using an API Key that was not issued through the console (applies only to enterprise customers), you must **reissue the API Key through the API console** to call the sandbox.
