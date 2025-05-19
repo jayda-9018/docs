@@ -1,1 +1,48 @@
+---
+title: "Voice ID Conversion Guide"
+description: "Instructions on how to replace existing voice_id with new character-based IDs and how to use the mapping table."
+---
 
+In the sandbox environment, the existing voice ID system has been **completely revamped**.\
+The old complex voice IDs in the form of `{character-language-style}` will disappear,\
+and now you can call more concisely with a combination of ****`character-based voice_id + parameters (`**** `language, style)`.
+
+### 🗂 Download Voice ID Mapping Table
+
+> 🔗 [View Voice ID Mapping Sheet](https://docs.google.com/spreadsheets/d/1RPP9rxE8lWKrkhU91pdHUxOfYGEpqRSDaIybmVBFFZ0/edit?usp=sharing)
+
+In the sheet, you can check **Old Voice ID** and **New Voice ID \+ language/style parameters** in a 1:1 relationship.\
+For example, they are replaced as follows:
+
+| Old Voice ID             | New Voice ID             | Name   | language | style     |
+| :----------------------- | :----------------------- | ------ | :------- | :-------- |
+| `wq4QNZra8YVCTWGVXbC`    | `91992bbd4758bdcf9c9b0`  | Adam   | `ko`     | `neutral` |
+| `vG4KaR4wwG5mvdCJfyrbWN` | `7d6fa2e0c4abfd9e1acc4c` | Yoonho | `en`     | `happy`   |
+
+The mapping table includes various style combinations by character,\
+and many **characters that didn't exist before** and **new styles** have been added.
+
+### ✅ Replacement Method
+
+1. **Search for the Old Voice ID you've been using in the mapping table**.
+2. **Extract the corresponding New Voice ID along with language/style parameters**.
+3. When calling the API, enter the new ID in `voice_id`, and pass `language` and `style` as parameters.
+
+```json
+POST /sandbox/text-to-speech/{91992bbd4758bdcf9c9b0}
+{
+  "text": "This is an example sentence.",
+  "language": "ko",
+  "style": "neutral"
+}
+```
+### 🧭 Notes
+
+- In most cases, style defaults to neutral and is optional.\
+  If not specified, the voice will be generated with the default style set in the system.
+- In the new system, you can selectively call various styles/languages with the same character ID.
+
+### ❓ Can't Find Your Voice ID?
+If you cannot find the Old Voice ID you've been using in the mapping table,\
+it may be that the voice is not supported in the new model or has been integrated.\
+Please contact Customer Support for a quick confirmation.
