@@ -1,1 +1,83 @@
+---
+title: "Frequently Asked Questions (FAQ)"
+description: "We've compiled common issues and solutions related to the sandbox and structural changes. If you have any questions or problems during the service transition, please check here first."
+---
 
+<Accordion title="My existing voice_id no longer works.">
+  In the sandbox, you cannot use the existing `{character-language-style}` format of voice_id.\
+  Now only **character-based voice_id** is available, and style and language have been separated as parameters.
+  - `voice_id` → Character-based Voice ID (e.g., `91992bbd4758bdcf9c9b0`)
+  - `language`, `style` → Passed as parameters
+  📄 [View Voice ID Mapping Table](https://docs.google.com/spreadsheets/d/1RPP9rxE8lWKrkhU91pdHUxOfYGEpqRSDaIybmVBFFZ0/edit?usp=sharing)
+  👉 IDs not in the mapping table may not have been integrated into the new version.\
+  In that case, please contact customer support.
+</Accordion>
+
+<Accordion title="Do I need to enter the style parameter?">
+  **No, it's optional.**\
+  The style parameter is optional, and if not entered, the default style set for that character will be automatically applied.
+  However, since each character has different styles, some characters may have **a style other than "neutral" as default**, so it's recommended to specify the style directly if you need a specific style.
+</Accordion>
+
+<Accordion title="Can I use clone voices in the API as well?">
+  **Yes, it's now possible.**\
+  Clone voices (e.g., 'My Voice 1') created in Play can also be called from the sandbox and official API.
+  **How to find the voice ID:**
+  - Call the `/sandbox/voices/search` endpoint and
+  - Pass a search term like `name=My Voice` to the `query` parameter
+  - You can then check the ID of the clone voice registered to your account.
+  ```http
+  GET /sandbox/voices/search?name=My Voice
+  ```
+</Accordion>
+
+<Accordion title="Can I continue using my existing API Key?">
+  **✅ Most users can continue using it.**
+  - If you're already using an **API Key issued through the console**, you can continue using it without any additional steps.
+  **⚠️ However, enterprise customers meeting the following conditions must take action:**
+  | Condition | Action |
+  | :------------------------------------------------ | :----------------------------- |
+  | Using a **legacy API Key** received as a text file, etc., without console registration | Must register on the console and reissue API Key |
+  | Registered on the console, but **missing custom voice settings, etc.** | Separate consultation with Supertone required (voice permission transfer, etc.) |
+  API Console: https://console.supertoneapi.com
+</Accordion>
+
+<Accordion title="Will credits be deducted when calling the TTS API in the sandbox?">
+  **Yes, actual credits will be deducted when calling the TTS API in the sandbox.**\
+  From this grand opening, the **post-payment system will be terminated**,\
+  and a **prepaid credit-based pricing system identical to Play** will be applied.\
+  However, no credits are deducted when calling the Predict Duration API.
+  - Credit unit prices are the same as Play's pricing plans.
+  - If you've already paid for a plan in Play, the same credits are shared in the sandbox.
+  - Some free trial credits are also provided.
+  📌 Credit balance check API: `GET /sandbox/credits`
+</Accordion>
+
+<Accordion title="Can I still use post-payment like before?">
+  No. **Post-payment was a closed beta-exclusive policy**.\
+  After the grand opening, it will be converted to credit-based, and **automatic payment and unpaid usage settlement functions will not be provided.**
+</Accordion>
+
+<Accordion title="How can I find the ID of a clone voice or custom voice?">
+  - You can check the list of all voices in your account at `/sandbox/voices` or `/sandbox/voices/search`.
+  - Clone voices can be found by searching for `"My Voice"`.
+  - For enterprise accounts with custom voices, Supertone will provide the voice_id separately.
+</Accordion>
+
+<Accordion title="What happens if I enter an incorrect style or language parameter?">
+  - If you enter a non-existent style/language, a **400 Bad Request** error will occur.
+  - Please make sure to enter parameters based on the values provided in the responses from `/sandbox/voices` or `/sandbox/voices/search`.
+</Accordion>
+
+<Accordion title="How long can I use the sandbox?">
+  The sandbox will only be operational from **May 19 to June 6, 2025**.\
+  After that, the `/sandbox` endpoint will be terminated, and from May 28, the same specifications will be officially reflected on the `/v1` path, so please use the endpoints on the v1 path.
+</Accordion>
+
+<Accordion title="What needs to be changed when switching back from sandbox to v1?">
+  - Only the API call path needs to be changed.
+    ```vbnet
+    /sandbox/text-to-speech → /v1/text-to-speech
+    ```
+  - Voice ID, parameter structure, model name, etc., will all remain the same.
+</Accordion>
