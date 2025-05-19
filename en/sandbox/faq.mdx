@@ -5,7 +5,7 @@ description: "We've compiled common issues and solutions related to the sandbox 
 
 <Accordion title="My existing voice_id no longer works.">
   In the sandbox, you cannot use the existing `{character-language-style}` format of voice_id.\
-  Now only **character-based voice_id** is available, and style and language have been separated as parameters.
+  Now only **character-based voice_id** is available, and style and language have been separated as parameters.\
   - `voice_id` → Character-based Voice ID (e.g., `91992bbd4758bdcf9c9b0`)
   - `language`, `style` → Passed as parameters
   📄 [View Voice ID Mapping Table](https://docs.google.com/spreadsheets/d/1RPP9rxE8lWKrkhU91pdHUxOfYGEpqRSDaIybmVBFFZ0/edit?usp=sharing)
@@ -15,17 +15,19 @@ description: "We've compiled common issues and solutions related to the sandbox 
 
 <Accordion title="Do I need to enter the style parameter?">
   **No, it's optional.**\
-  The style parameter is optional, and if not entered, the default style set for that character will be automatically applied.
+  The style parameter is optional, and if not entered, the default style set for that character will be automatically applied.\
   However, since each character has different styles, some characters may have **a style other than "neutral" as default**, so it's recommended to specify the style directly if you need a specific style.
 </Accordion>
 
 <Accordion title="Can I use clone voices in the API as well?">
   **Yes, it's now possible.**\
-  Clone voices (e.g., 'My Voice 1') created in Play can also be called from the sandbox and official API.
+  Clone voices (e.g., 'My Voice 1') created in Play can also be called from the sandbox and official API.\
+
   **How to find the voice ID:**
   - Call the `/sandbox/voices/search` endpoint and
   - Pass a search term like `name=My Voice` to the `query` parameter
   - You can then check the ID of the clone voice registered to your account.
+
   ```http
   GET /sandbox/voices/search?name=My Voice
   ```
@@ -49,7 +51,7 @@ description: "We've compiled common issues and solutions related to the sandbox 
   However, no credits are deducted when calling the Predict Duration API.
   - Credit unit prices are the same as Play's pricing plans.
   - If you've already paid for a plan in Play, the same credits are shared in the sandbox.
-  - Some free trial credits are also provided.
+  - Some free trial credits are also provided.\
   📌 Credit balance check API: `GET /sandbox/credits`
 </Accordion>
 
