@@ -1198,7 +1198,7 @@
           "model": {
             "type": "string",
             "description": "The model type to use for the text-to-speech conversion",
-            "default": "tts-v2.1.0"
+            "default": "sona_speech_1"
           },
           "voice_settings": {
             "$ref": "#/components/schemas/ConvertTextToSpeechParameters"
@@ -1233,7 +1233,7 @@
           "model": {
             "type": "string",
             "description": "The model type to use for the text-to-speech conversion",
-            "default": "tts-v2.1.0"
+            "default": "sona_speech_1"
           },
           "voice_settings": {
             "$ref": "#/components/schemas/ConvertTextToSpeechParameters"
