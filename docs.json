@@ -394,6 +394,10 @@
       {
         "label": "Newsroom",
         "href": "https://www.supertone.ai/company?scrollTo=company-newsroom"
+      },
+       {
+        "label": "Supertone Play",
+        "href": "https://play.supertone.ai"
       }
     ],
     "primary": {
