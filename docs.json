@@ -102,9 +102,14 @@
         "global": {
           "anchors": [
             {
-              "anchor": "수퍼톤",
-              "icon": "house",
-              "href": "https://supertone.ai"
+              "anchor": "개발자 콘솔",
+              "icon": "code",
+              "href": "https://console.supertoneapi.com"
+            },
+            {
+              "anchor": "Supertone Play",
+              "icon": "microphone",
+              "href": "https://play.supertone.ai"
             },
             {
               "anchor": "커뮤니티",
@@ -210,9 +215,14 @@
         "global": {
           "anchors": [
             {
-              "anchor": "Supertone",
-              "icon": "house",
-              "href": "https://supertone.ai"
+              "anchor": "開発者コンソール",
+              "icon": "code",
+              "href": "https://console.supertoneapi.com"
+            },
+            {
+              "anchor": "Supertone Play",
+              "icon": "microphone",
+              "href": "https://play.supertone.ai"
             },
             {
               "anchor": "コミュニティ",
@@ -318,9 +328,14 @@
         "global": {
           "anchors": [
             {
-              "anchor": "Supertone",
-              "icon": "house",
-              "href": "https://supertone.ai"
+              "anchor": "Developer Console",
+              "icon": "code",
+              "href": "https://console.supertoneapi.com"
+            },
+            {
+              "anchor": "Supertone Play",
+              "icon": "microphone",
+              "href": "https://play.supertone.ai"
             },
             {
               "anchor": "Community",
@@ -388,23 +403,18 @@
   "navbar": {
     "links": [
       {
+        "label": "Supertone",
+        "href": "https://supertone.ai"
+      },
+      {
         "label": "Research",
         "href": "https://www.supertone.ai/company?scrollTo=company-research"
       },
       {
-        "label": "Newsroom",
+        "label": "News",
         "href": "https://www.supertone.ai/company?scrollTo=company-newsroom"
-      },
-       {
-        "label": "Supertone Play",
-        "href": "https://play.supertone.ai"
       }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Go to API Console",
-      "href": "https://console.supertoneapi.com"
-    }
+    ]
   },
   "footer": {
     "socials": {
