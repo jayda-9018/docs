@@ -102,9 +102,9 @@
         "global": {
           "anchors": [
             {
-              "anchor": "개발자 콘솔",
-              "icon": "code",
-              "href": "https://console.supertoneapi.com"
+              "anchor": "수퍼톤",
+              "icon": "house",
+              "href": "https://supertone.ai"
             },
             {
               "anchor": "커뮤니티",
@@ -210,9 +210,9 @@
         "global": {
           "anchors": [
             {
-              "anchor": "開発者コンソール",
-              "icon": "code",
-              "href": "https://console.supertoneapi.com"
+              "anchor": "Supertone",
+              "icon": "house",
+              "href": "https://supertone.ai"
             },
             {
               "anchor": "コミュニティ",
@@ -318,9 +318,9 @@
         "global": {
           "anchors": [
             {
-              "anchor": "Developer Console",
-              "icon": "code",
-              "href": "https://console.supertoneapi.com"
+              "anchor": "Supertone",
+              "icon": "house",
+              "href": "https://supertone.ai"
             },
             {
               "anchor": "Community",
@@ -398,8 +398,8 @@
     ],
     "primary": {
       "type": "button",
-      "label": "Go to Supertone.ai",
-      "href": "https://www.supertone.ai"
+      "label": "Go to API Console",
+      "href": "https://console.supertoneapi.com"
     }
   },
   "footer": {
