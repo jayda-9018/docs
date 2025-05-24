@@ -1,1 +1,76 @@
-
+---
+title: "リリースノート"
+description: "Supertone APIの最新アップデートと変更事項をご確認ください。"
+---
+<Update label="2025-05-28" description="v.1.1.0">
+  ## Supertone APIグランドオープン
+  
+  Supertone APIがクローズドベータを終了し、正式に公開されました。
+  今回のリリースでは、サービス構造とAPI使用性を全面的に改編し、Playとの統合およびボイスシステムの一元化を通じて、より直感的で拡張性の高い音声生成プラットフォームに発展しました。
+  <Frame>
+      ![](/images/supertone-api-grand-open.png)
+  </Frame>
+  ### 主要変更事項
+  1. **Voice ID構造改編**
+      - 既存の`{character-language-style}`組み合わせから → **キャラクター単位のvoice_id**に統一
+      - `language`、`style`パラメータが本文入力に分離され、柔軟な呼び出しが可能
+  2. **新規モデル導入**
+      - 既存の`pro`、`turbo`の代わりに → **`sona_speech_1`**単一モデルに統合
+      - 発話品質改善およびテキスト長制限上向き（200文字 → 300文字）
+  3. **クローンボイスAPI呼び出しサポート**
+      - Playで生成したクローンボイスをAPIでも呼び出し可能
+      - 同一アカウント内自動連携、権限ベースのセキュリティ維持
+  5. **Playと料金プラン統合**
+      - API使用時にPlayのクレジットシステムをそのまま適用
+      - 別途料金プランなしでクレジット共有および統合決済運営
+  6. **ボイス検索機能強化**
+      - `GET /voices`、`GET /voices/search` APIでフィルタリング/探索可能
+      - ボイス別サポート言語/スタイル/サンプル提供
+  7. **Predict Duration API提供**
+      - 音声生成前にテキスト長予測可能（クレジット差引なし）
+  8. **新規ユーザーガイド/文書提供**
+      - Quickstart、Voice Selection、Error Handling、FAQなど実戦中心文書完備
+      - Play ↔ API連携フローを考慮した全体文書リニューアル
+  このアップデートを通じて、Supertone APIは単純な呼び出し機能を超えて、  
+**サービス全般を有機的に連結し拡張可能な音声生成プラットフォーム**として一歩飛躍しました。
+</Update>
+<Update label="2025-01-23" description="v1.0.1">
+  ## Supertone API検索機能アップデート
+  こんにちは、Supertone APIをご利用いただきありがとうございます。お求めの音声をより簡単に見つけることができる新しい検索機能が追加されましたのでご案内いたします。
+  ### 新機能
+  1. **様々なフィルターとキーワードで音声を検索できる新しいエンドポイント追加**
+  - 言語、性別、年齢、用途別音声フィルタリング
+  - 音声名と説明でのキーワード検索
+  - 様々な基準での結果ソート
+  - 効率的なページ単位検索結果照会
+  ### APIエンドポイント
+  1. [Search Voices API](/ja/api-reference/endpoints/search-voices): 特定条件に合う音声検索およびフィルタリング
+  - 検索パラメータと例のリクエストについて詳しく知りたい場合は、APIリファレンスページをご訪問ください。
+  - Search Voices API使用に関する詳細は、アップデートされた文書を参照してください。
+</Update>
+<Update label="2024-12-23" description="v1.0.0">
+  <Frame>
+    ![](/images/supertone-api-landing-page.png)
+  </Frame>
+  ## Supertone APIクローズドベータリリース
+  こんにちは、**Supertone API**を見つけていただきありがとうございます。
+  Supertoneの音声AI技術を利用できるAPIサービスの**Closed Beta**バージョンがリリースされましたのでご案内いたします。
+  ### 主要機能
+  1. **Text-to-speech**音声合成サービス
+  2. 音声リスト照会および使用量確認API提供
+  ### APIエンドポイント
+  1. [Get Voices API](/ja/api-reference/endpoints/get-voices): 使用可能な音声リスト照会
+  2. [Text-to-speech API](/ja/api-reference/endpoints/text-to-voice): テキストを音声に変換
+  3. [Get Voice Usage API](/ja/api-reference/endpoints/get-voice-usage): API使用量確認
+  ### 開始方法
+  1. https://console.supertoneapi.com で会員登録
+  2. Closed Beta参加申請および承認
+  3. コンソールでAPI Key発行
+  4. API連携および使用
+  ### 料金案内
+  **\$0.1** / 生成されたオーディオ1分
+  ### コンソール機能
+  1. API Key発行および管理
+  2. 分単位API使用量モニタリング
+  詳細は[ユーザーガイド](/ja/user-guide/welcome)を参照してください。
+</Update>
