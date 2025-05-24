@@ -44,7 +44,6 @@ x-sup-api-key: [YOUR_API_KEY]
 - Voice length (seconds) can be checked through `X-Audio-Length` header
 
 ### Important Notes
-- `voice_id` must be a **character-based ID**, not the **existing** `{character-language-style}` **format**.
 - **400 error occurs when `text` length exceeds 300 characters**.
 - Calls are possible even without `style`, but default styles may vary by character, so please call Get Voices API to check the default style (the first value in the styles array is the default).
 - The audio file in the response can be directly saved or played (appropriate handling required depending on client).
