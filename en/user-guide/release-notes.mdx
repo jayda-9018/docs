@@ -1,1 +1,76 @@
-
+---
+title: "Release Notes"
+description: "Check the latest updates and changes to Supertone API."
+---
+<Update label="2025-05-28" description="v.1.1.0">
+  ## Supertone API Grand Opening
+  
+  Supertone API has officially launched after completing its closed beta phase.
+  This release features a complete overhaul of the service structure and API usability, evolving into a more intuitive and scalable voice generation platform through integration with Play and unification of the voice system.
+  <Frame>
+      ![](/images/supertone-api-grand-open.png)
+  </Frame>
+  ### Major Changes
+  1. **Voice ID Structure Redesign**
+      - Changed from existing `{character-language-style}` combination → unified to **character-based voice_id**
+      - `language` and `style` parameters separated into body input for flexible calling
+  2. **New Model Introduction**
+      - Replaced existing `pro`, `turbo` → unified into single **`sona_speech_1`** model
+      - Improved speech quality and increased text length limit (200 → 300 characters)
+  3. **Cloned Voice API Call Support**
+      - Cloned voices created in Play can now be called via API
+      - Automatic integration within the same account, maintaining permission-based security
+  5. **Play and Pricing Integration**
+      - API usage applies Play's credit system directly
+      - Shared credits and integrated billing without separate pricing plans
+  6. **Enhanced Voice Search Features**
+      - Filtering/exploration possible with `GET /voices`, `GET /voices/search` APIs
+      - Provides supported languages/styles/samples for each voice
+  7. **Predict Duration API Provision**
+      - Text length prediction possible before voice generation (no credit deduction)
+  8. **New User Guide/Documentation**
+      - Complete practical documentation including Quickstart, Voice Selection, Error Handling, FAQ
+      - Full documentation renewal considering Play ↔ API integration flow
+  Through this update, Supertone API has evolved beyond simple calling functionality to  
+**an organically connected and scalable voice generation platform** for overall service.
+</Update>
+<Update label="2025-01-23" description="v1.0.1">
+  ## Supertone API Search Feature Update
+  Hello, thank you for using Supertone API. We're introducing new search features that make it easier to find the voices you want.
+  ### New Features
+  1. **New endpoint added for searching voices with various filters and keywords**
+  - Voice filtering by language, gender, age, and use case
+  - Keyword search in voice names and descriptions
+  - Result sorting by various criteria
+  - Efficient page-based search result viewing
+  ### API Endpoints
+  1. [Search Voices API](/en/api-reference/endpoints/search-voices): Search and filter voices that match specific conditions
+  - Please visit the API reference page to learn more about search parameters and example requests.
+  - For detailed information on using the Search Voices API, please refer to the updated documentation.
+</Update>
+<Update label="2024-12-23" description="v1.0.0">
+  <Frame>
+    ![](/images/supertone-api-landing-page.png)
+  </Frame>
+  ## Supertone API Closed Beta Launch
+  Hello, thank you for finding **Supertone API**.
+  We're announcing the launch of the **Closed Beta** version of our API service that allows you to use Supertone's voice AI technology.
+  ### Key Features
+  1. **Text-to-speech** voice synthesis service
+  2. Voice list inquiry and usage check API provision
+  ### API Endpoints
+  1. [Get Voices API](/en/api-reference/endpoints/get-voices): Retrieve list of available voices
+  2. [Text-to-speech API](/en/api-reference/endpoints/text-to-voice): Convert text to speech
+  3. [Get Voice Usage API](/en/api-reference/endpoints/get-voice-usage): Check API usage
+  ### Getting Started
+  1. Sign up at https://console.supertoneapi.com
+  2. Apply for Closed Beta participation and get approval
+  3. Issue API Key from console
+  4. Integrate and use API
+  ### Pricing Information
+  **\$0.1** / 1 minute of generated audio
+  ### Console Features
+  1. API Key issuance and management
+  2. Minute-based API usage monitoring
+  For more details, please refer to the [User Guide](/en/user-guide/welcome).
+</Update>
