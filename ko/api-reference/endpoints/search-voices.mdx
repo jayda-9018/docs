@@ -37,7 +37,7 @@ GET /v1/voices/search?name=My Voice
 GET /v1/voices/search?style=happy&language=ko,en
 ```
 
-→ 스타일에 happy가 포함되고, 언어에 한국어(ko)와 영어(en) 중 1개 이상이 포함되는 보이스만 조회됩니다.
+스타일에 happy가 포함되고, 언어에 한국어(ko)와 영어(en) 중 1개 이상이 포함되는 보이스만 조회됩니다.
 
 ### 사용 예시 3: 페이지네이션 적용
 
@@ -45,8 +45,8 @@ GET /v1/voices/search?style=happy&language=ko,en
 GET /v1/voices/search?page_size=50&next_page_token=eyJpZCI6IjEyMzQ1In0=
 ```
 
-→ 50개 단위로 다음 페이지를 가져옵니다.\
-→ `next_page_token` 값은 이전 응답에서 받아올 수 있습니다.
+-  50개 단위로 다음 페이지를 가져옵니다.
+- `next_page_token` 값은 이전 응답에서 받아올 수 있습니다.
 
 ### 유의사항
 
