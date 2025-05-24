@@ -1,1 +1,49 @@
+---
+title: "Search Voices"
+description: "Explains parameter usage and search examples for the Search Voices API that can filter voices by various conditions."
+openapi: "/openapi.json GET /v1/voices/search"
+---
+**An API that can search voices based on conditions.**\
+You can filter voices available in your account (including regular + cloned voices) by various conditions such as name, language, style, etc.
 
+### Key Parameters
+| Parameter              | Description                             | Example                                          |
+| :---------------- | :----------------------------- | :------------------------------------------ |
+| `name`            | Search by voice name (partial match)            | `My Voice` (→ finding cloned voices)                    |
+| `language`        | Voice language code (multiple inputs possible with comma)      | `ko`, `en`, `ja`                            |
+| `gender`          | Voice gender (multiple inputs possible with comma)         | `male`, `female`                            |
+| `age`             | Voice age group                       | `teen`, `adult`, `senior`, etc.                 |
+| `use_case`        | Filter based on recommended use case                   | `audiobook`, `narration`, `advertisement`, etc. |
+| `style`           | Emotional style filter                      | `neutral`, `happy`, `sad`, `angry`, etc.        |
+| `model`           | Filter based on supported voice model               | `sona_speech_1`, etc.                           |
+| `page_size`       | Number of items per page (default: 20, max: 100) | `50`                                        |
+| `next_page_token` | Token for pagination                  | `nextPageToken` value received from previous response                |
+
+> ⚠️ `sort` parameter is not supported.
+
+### Usage Example 1: Finding Cloned Voices
+```http
+GET /v1/voices/search?name=My Voice
+```
+→ You can search for cloned voices registered in your account (e.g., `My Voice`) to get the `voice_id`.
+
+### Usage Example 2: Style and Language Condition Filter
+```http
+GET /v1/voices/search?style=happy&language=ko,en
+```
+Only voices that include happy in style and contain at least one of Korean (ko) and English (en) in language will be retrieved.
+
+### Usage Example 3: Apply Pagination
+```http
+GET /v1/voices/search?page_size=50&next_page_token=eyJpZCI6IjEyMzQ1In0=
+```
+-  Fetches the next page in units of 50.
+- The `next_page_token` value can be obtained from the previous response.
+
+### Important Notes
+- All parameters **can accept multiple conditions (OR) separated by commas.**
+  ```http
+  language=ko,en&style=happy,sad
+  ```
+- If non-existent combinations are entered, the response will be 200 OK but the results may be empty.
+- The response structure includes an `items` array and `next_page_token` value, and also provides each voice's `voice_id`, style, sample URL, etc.
