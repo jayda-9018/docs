@@ -69,9 +69,6 @@ Content-Type: application/json
 | `pitch_variance` | Controls the degree of intonation variation during speech.<br />Smaller values create flatter intonation, larger values create richer intonation. | 0.1 ~ 2       | 1       |
 | `speed`          | Controls speech speed.<br />Values less than 1 make it slower, values greater than 1 make it faster.                                              | 0.5 ~ 2       | 1       |
 
-> ⚠️ Values outside the range will apply default values.\
-> Extreme adjustment values may degrade voice quality.
-
 ## 5. Response
 
 On success, responds with an audio stream (`audio/wav` or `audio/mpeg`).\
