@@ -1,97 +1,341 @@
 ---
-title: 'Quickstart'
-description: 'Start building awesome documentation in under 5 minutes'
+title: 빠르게 시작하기
+description: '수퍼톤 API를 사용하여 고품질 AI 음성을 생성하는 방법을 단계별로 안내해드립니다.'
 ---
+이 페이지는 Supertone API를 처음 사용해보는 분들이  
+**빠르게 음성 합성 흐름을 체험**해볼 수 있도록 구성되어 있습니다.
 
-## Setup your development
+아래 순서를 따라 직접 호출까지 완료해보세요.
 
-Learn how to update your docs locally and deploy them to the public.
+## 1. API Key를 발급받고 인증 준비하기
 
-### Edit and preview
+수퍼톤 API는 API Key 기반 인증을 사용합니다.  
+콘솔에 가입하고, 새로운 서비스를 생성하면 바로 API Key를 발급받을 수 있습니다.
 
-<AccordionGroup>
-  <Accordion icon="github" title="Clone your docs locally">
-    During the onboarding process, we created a repository on your Github with
-    your docs content. You can find this repository on our
-    [dashboard](https://dashboard.mintlify.com). To clone the repository
-    locally, follow these
-    [instructions](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
-    in your terminal.
-  </Accordion>
-  <Accordion icon="rectangle-terminal" title="Preview changes">
-    Previewing helps you make sure your changes look as intended. We built a
-    command line interface to render these changes locally. 
-    1. Install the
-    [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the
-    documentation changes locally with this command: ``` npm i -g mintlify ```
-    2. Run the following command at the root of your documentation (where
-    `docs.json` is): ``` mintlify dev ```
-    <Note>
-      If you’re currently using the legacy ```mint.json``` configuration file, please update the Mintlify CLI:
+- 콘솔 주소: [https://console.supertoneapi.com](https://console.supertoneapi.com)
+- 하나의 계정당 최대 3개의 API Key를 발급받을 수 있으며, 필요 시 폐기 및 재발급도 가능합니다.
+- API 호출 시에는 `x-sup-api-key` 헤더에 발급받은 키를 넣어주세요.
 
+```bash
+x-sup-api-key: [YOUR_API_KEY]
+```
 
-      ```npm i -g mintlify@latest```
-      And run the new upgrade command in your docs repository:
+## 2. 사용할 수 있는 보이스 ID 확인하기
 
-      ```mintlify upgrade```
-      You should now be using the new ```docs.json``` configuration file. Feel free to delete the ```mint.json``` file from your repository.
-    </Note>
-  </Accordion>
-</AccordionGroup>
+보이스 ID는 텍스트를 어떤 목소리로 읽을지 결정하는 키입니다.
+현재 계정에서 사용 가능한 보이스는 다음 두 가지 방법으로 확인할 수 있습니다
 
-### Deploy your changes
+### Play에서 직접 확인하고 복사하기
 
-<AccordionGroup>
+### 모든 보이스 한 번에 확인하기
 
-<Accordion icon="message-bot" title="Install our Github app">
-  Our Github app automatically deploys your changes to your docs site, so you
-  don't need to manage deployments yourself. You can find the link to install on
-  your [dashboard](https://dashboard.mintlify.com). Once the bot has been
-  successfully installed, there should be a check mark next to the commit hash
-  of the repo.
-</Accordion>
-<Accordion icon="rocket" title="Push your changes">
-  [Commit and push your changes to
-  Git](https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository#about-git-push)
-  for your changes to update in your docs site. If you push and don't see that
-  the Github app successfully deployed your changes, you can also manually
-  update your docs through our [dashboard](https://dashboard.mintlify.com).
-</Accordion>
+GET /voices 엔드포인트를 사용하면, 조건 없이 사용 가능한 전체 보이스 목록을 받아올 수 있습니다.
 
-</AccordionGroup>
+```http
+GET /voices
+```
 
-## Update your docs
+### 조건에 맞는 보이스 찾기
 
-Add content directly in your files with MDX syntax and React components. You can use any of our components, or even build your own.
+GET /voices/search에서는 언어, 스타일 등을 기준으로 보이스를 필터링할 수 있습니다.
+- 예: 한국어 보이스 중 스타일이 'happy'인 경우만 조회
 
-<CardGroup>
+```http
+GET /voices/search?language=ko&style=happy
+```
+→ 각 보이스의 id 필드를 확인해 실제 호출에 사용할 수 있습니다.
 
-<Card title="Add Content With MDX" icon="file" href="/essentials/markdown">
-  Add content to your docs with MDX syntax.
-</Card>
+## 3. 음
+<Steps>
+  <Step title="인증">
+    수퍼톤 API는 HTTP 요청 헤더를 통한 키 인증 방식을 사용합니다. API Key는 [개발자 콘솔 페이지](https://console.supertoneapi.com)에서 발급받아 사용하실 수 있습니다.
+  </Step>
+  <Step title="보이스 아이디 선택">
+    [Get Voices API](/ko/api-reference/endpoints/get-voices)를 호출하여 사용할 수 있는 보이스를 확인하세요. [Supertone Play](https://play.supertone.ai)에서 콘텐츠를 제작하며 다양한 보이스를 탐색한 뒤 선택할 수도 있습니다.
+  </Step>
+  <Step title="API 호출">
+    선택한 보이스 아이디로 [텍스트를 음성으로 변환하는 API](/ko/api-reference/endpoints/text-to-speech)를 호출할 수 있습니다.
+  </Step>
+</Steps>
 
-<Card
-  title="Add Code Blocks"
-  icon="square-code"
-  href="/essentials/code"
->
-  Add code directly to your docs with syntax highlighting.
-</Card>
+## 1. 인증
 
-<Card
-  title="Add Images"
-  icon="image"
-  href="/essentials/images"
->
-  Add images to your docs to make them more engaging.
-</Card>
+모든 API 요청에는 인증이 필요합니다. API 키를 발급받아 HTTP 헤더에 포함하여 요청하세요.
 
-<Card
-  title="Add Custom Components"
-  icon="puzzle-piece"
-  href="/essentials/reusable-snippets"
->
-  Add templates to your docs to make them more reusable.
-</Card>
+### API 키 발급
 
-</CardGroup>
+수퍼톤 API 키는 클로즈드 베타 서비스 승인 후 [콘솔 페이지](https://console.supertoneapi.com)에서 직접 발급받으실 수 있습니다.
+
+**발급 정책**
+
+1. 계정당 한 번에 최대 3개의 API 키 발급 가능
+   - 개발 환경별로 구분하여 사용하는 것을 권장합니다(ex. `Dev`, `Stage`, `Production`)
+2. 언제든지 키 폐기 및 재발급 가능
+    - 보안상의 이유로 키 교체가 필요한 경우
+    - 키 유출이 의심되는 경우
+    - 프로젝트 단위로 키를 구분하고 싶은 경우
+
+**발급 절차**
+
+1. [콘솔 페이지](https://console.supertoneapi.com) 로그인
+2. 사이드바 > API Keys 메뉴 접속
+3. ‘Create API Key’ 버튼을 클릭하여 키 발급 완료
+
+### API 인증
+
+수퍼톤 API는 HTTP 요청 헤더를 통한 API 키 인증 방식을 사용합니다.
+
+**헤더 구성**
+
+- 키: `x-sup-api-key`
+- 값: 발급받은 API 키
+- Base URL: `https://supertoneapi.com`
+
+모든 API 요청에는 반드시 이 인증 헤더가 포함되어야 합니다. 헤더가 누락되거나 잘못된 API 키가 제공될 경우 401 Unauthorized 응답이 반환됩니다.
+
+```bash
+x-sup-api-key: YOUR_API_KEY
+```
+
+**인증 코드 예제**
+
+각 프로그래밍 언어별 인증 구현 예제입니다.
+
+<CodeGroup>
+```bash curl
+curl -X GET "https://supertoneapi.com/v1/voices" \
+     -H "x-sup-api-key: YOUR_API_KEY"
+```
+
+```python Python
+import requests
+
+api_key = "YOUR_API_KEY"
+headers = {
+    "x-sup-api-key": api_key
+}
+
+response = requests.get(
+    "https://supertoneapi.com/v1/voices",
+    headers=headers
+)
+
+if response.status_code == 200:
+    voices = response.json()
+    print(voices)
+```
+
+```javascript JavaScript
+// Using Fetch API
+const apiKey = "YOUR_API_KEY";
+
+fetch("https://supertoneapi.com/v1/voices", {
+    method: "GET",
+    headers: {
+        "x-sup-api-key": apiKey
+    }
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error("Error:", error));
+
+// Using Axios
+const axios = require('axios');
+
+const apiKey = "YOUR_API_KEY";
+const config = {
+    headers: { "x-sup-api-key": apiKey }
+};
+
+axios.get("https://supertoneapi.com/v1/voices", config)
+    .then(response => console.log(response.data))
+    .catch(error => console.error("Error:", error));
+```
+
+```php PHP
+<?php
+$api_key = "YOUR_API_KEY";
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, "https://supertoneapi.com/v1/voices");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    "x-sup-api-key: " . $api_key
+));
+
+$response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+if ($httpCode == 200) {
+    $data = json_decode($response, true);
+    print_r($data);
+}
+
+curl_close($ch);
+?>
+```
+
+```go Go
+package main
+
+import (
+    "fmt"
+    "io/ioutil"
+    "net/http"
+)
+
+func main() {
+    apiKey := "YOUR_API_KEY"
+    client := &http.Client{}
+    
+    req, err := http.NewRequest("GET", "https://supertoneapi.com/v1/voices", nil)
+    if err != nil {
+        fmt.Printf("Error creating request: %v\n", err)
+        return
+    }
+    
+    req.Header.Add("x-sup-api-key", apiKey)
+    
+    resp, err := client.Do(req)
+    if err != nil {
+        fmt.Printf("Error making request: %v\n", err)
+        return
+    }
+    defer resp.Body.Close()
+    
+    body, err := ioutil.ReadAll(resp.Body)
+    if err != nil {
+        fmt.Printf("Error reading response: %v\n", err)
+        return
+    }
+    
+    if resp.StatusCode == 200 {
+        fmt.Printf("Response: %s\n", string(body))
+    }
+}
+```
+
+```java Java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class SupertoneApiExample {
+    public static void main(String[] args) {
+        String apiKey = "YOUR_API_KEY";
+        
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://supertoneapi.com/v1/voices"))
+            .header("x-sup-api-key", apiKey)
+            .GET()
+            .build();
+
+        try {
+            HttpResponse<String> response = client.send(
+                request, 
+                HttpResponse.BodyHandlers.ofString()
+            );
+            
+            if (response.statusCode() == 200) {
+                System.out.println(response.body());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+</CodeGroup>
+
+**주의사항**
+
+- API 키는 노출되지 않도록 환경 변수나 설정 파일에 별도로 보관하여 관리하시기 바랍니다.
+- API 키가 노출된 경우 즉시 콘솔에서 해당 키를 폐기하고 새로운 키를 발급받으세요.
+- 모든 API 통신은 HTTPS를 통해 이루어지므로, SSL/TLS 인증서 관련 이슈가 없는지 확인하세요.
+- 401 오류가 발생하는 경우 API 키가 올바른지, 헤더 이름이 정확한지 확인하세요.
+
+## 2. 보이스 아이디 가져오기
+
+음성 생성을 위해서는 보이스 아이디를 지정해야 합니다. Get Voices API, Search Voices API를 호출하여 사용 가능한 보이스들을 확인하실 수 있습니다.
+
+**[Get Voices API](/ko/api-reference/endpoints/get-voices)를 호출해 확인**
+
+Get Voices API를 호출하여 사용 가능한 보이스 목록을 확인할 수 있습니다. API는 다음과 같은 형식의 JSON 응답을 반환합니다. JSON 응답 내 포함된 `voice_id`를 API 호출 시 파라미터로 입력합니다.
+
+```json
+{
+    "voices": [
+        {
+            "voice_id": "54CyP2zU9HCeLVCpzDRFPi",
+            "name": "Yoonho",
+            "description": "Yoonho is a sarcastic and indifferent teenager. He doesn't express his emotions well.",
+            "age": "young-adult",
+            "gender": "male",
+            "use_case": "game",
+            "language": "ko",
+            "style": "blank_high"
+        }
+    ]
+}
+```
+
+**[Search Voices API](/ko/api-reference/endpoints/search-voices)를 호출해 확인**
+
+Search Voices API를 호출하여 다양한 키워드와 필터를 사용해 보이스를 검색할 수 있습니다. API는 다음과 같은 형식의 JSON 응답을 반환합니다. JSON 응답 내 포함된 `voice_id`를 API 호출 시 파라미터로 입력합니다.
+
+```json
+{
+  "voices": [
+    {
+      "voice_id": "<string>",
+      "name": "<string>",
+      "description": "<string>",
+      "age": "<string>",
+      "gender": "<string>",
+      "use_case": "<string>",
+      "language": "<string>",
+      "style": "<string>"
+    }
+  ],
+  "total": 123,
+  "page": 123,
+  "page_size": 123,
+  "total_pages": 123
+}
+```
+
+## 3. 음성 합성(Text-to-speech)
+
+선택한 보이스 아이디로 텍스트를 음성으로 변환합니다.
+
+### 기본 요청 예시
+
+```bash
+curl -X POST "https://supertoneapi.com/v1/text-to-speech?output_format=wav" \
+     -H "x-sup-api-key: YOUR_API_KEY" \
+     -H "Content-Type: application/json" \
+     -d '{
+           "voice_id": "54CyP2zU9HCeLVCpzDRFPi",
+           "language": "en",
+           "text": "Good morning. Rise and shine!"
+         }'
+```
+
+### 파일 형식 지정
+
+**지원 형식**
+
+`output_format` 쿼리 파라미터로 파일 형식을 지정할 수 있습니다.
+
+- wav: `?output_format=wav`
+- mp3: `?output_format=mp3`
+
+```bash
+# WAV 형식 요청
+https://supertoneapi.com/v1/text-to-speech?output_format=wav
+
+# MP3 형식 요청
+https://supertoneapi.com/v1/text-to-speech?output_format=mp3
+```
