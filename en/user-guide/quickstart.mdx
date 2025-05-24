@@ -1,1 +1,78 @@
+---
+title: Quick Start
+description: 'A step-by-step guide on how to generate high-quality AI voices using Supertone API.'
+---
+This page is designed for those who are new to Supertone API to\
+**quickly experience the voice synthesis workflow**.
+Follow the steps below to complete your first API call.
+
+## 1. Get API Key and Prepare Authentication
+Supertone API uses API Key-based authentication.\
+Sign up for the console and create a new service to immediately receive your API Key.
+
+- Console URL: https://console.supertoneapi.com
+- You can issue up to 3 API Keys per account, and revocation and reissuance are possible when needed.
+- When making API calls, include the issued key in the `x-sup-api-key` header.
+
+```bash
+x-sup-api-key: [YOUR_API_KEY]
+```
+
+## 2. Check Available Voice IDs
+Voice ID is the key that determines which voice will read the text. You can check the voices available in your current account through the following three methods:
+
+### 2.1 Copy from Supertone Play
+The easiest way to check voice IDs is to copy them from the voice library in Supertone Play.
+
+As shown in the example image below, clicking the 'Copy voice ID' button within each voice will copy that voice's `voice_id` to your clipboard.
+
+<Frame>
+  ![](/images/supertone-play-copy-voice-id-preset.png)
+</Frame>
+
+Cloned voices can also be copied using the same method.
+
+<Frame>
+  ![](/images/supertone-play-copy-voice-id-cloned.png)
+</Frame>
+
+The copied ID can be used directly in the console or API.
+
+### 2.2 Check All Voices at Once
+Using the GET /voices endpoint, you can retrieve a complete list of available voices without any conditions.
+
+```http
+GET /v1/voices
+```
+
+### 2.3 Find Voices by Conditions
+GET /v1/voices/search allows you to filter voices based on language, style, etc.
+
+- Example: Query only Korean voices with 'happy' style
+```http
+GET /v1/voices/search?language=ko&style=happy
+```
+
+You can check each voice's id field to use in actual calls.
+
+## 3. Generate Voice
+Once you've confirmed the voice ID, you can now convert text to speech.
+Here's a basic call example:
+
+```http
+POST /v1/text-to-speech/e5f6fb1a53d0add87afb4f
+Content-Type: application/json
+x-sup-api-key: [YOUR_API_KEY]
+
+{
+  "text": "안녕하세요, 수퍼톤 API입니다.",
+  "language": "ko",
+  "style": "neutral",
+  "model": "sona_speech_1"
+}
+```
+
+The response is returned as an audio file stream format (WAV), and you can check the length of the generated voice through the X-Audio-Length value in the header.
+
+You're now ready to integrate Supertone API. Move on to the next step to explore more diverse settings and advanced usage.
 
