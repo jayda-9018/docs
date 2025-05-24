@@ -1,1 +1,206 @@
+---
+title: "ボイス選択ガイド"
+description: "使用するボイスIDを見つける方法と、API/Playでボイス情報を照会する方法をご案内します。"
+---
+
+音声合成で最も重要な要素は、どの声でテキストを読むかを決定する**ボイスID**です。この文書では、希望するボイスを見つける方法と、API呼び出しに必要なボイス情報をどのように確認できるかをご案内します。
+
+## 1. ボイスIDとは何ですか？
+
+`voice_id`は、一つのユニークなキャラクターを識別する値です。
+
+音声を合成する際は、このボイスIDに加えて、**言語（language）**、**スタイル（style）**、**モデル（model）**情報を一緒に渡す必要があり、正確な音声が生成されます。
+
+## 2. ボイスIDを見つける3つの方法
+
+### 2.1 Supertone Playからコピーする
+
+最も早く直感的な方法は、Supertone Playのボイスライブラリから`voice_id`をコピーすることです。
+
+- 各ボイス項目内の**Copy voice ID**ボタンをクリックすると
+- そのボイスのIDがクリップボードにコピーされます
+- クローンボイスも別のタブで確認できます
+
+[Supertone Playへ移動](https://play.supertone.ai)
+
+**基本ボイス例：**
+
+<Frame>
+  ![](/images/supertone-play-copy-voice-id-preset.png)
+</Frame>
+
+**クローンボイス例：**
+
+<Frame>
+  ![](/images/supertone-play-copy-voice-id-cloned.png)
+</Frame>
+
+### 2.2 `GET /v1/voices`で全ボイスリストを取得
+
+APIを通じて**条件なしに使用可能な全ボイスリスト**を確認するには、`GET /voices`エンドポイントを使用してください。
+
+```http
+GET /v1/voices
+```
+
+レスポンスには以下の情報が含まれます：
+
+- `voice_id`：呼び出しで使用されるID
+- `name`：キャラクター名（例：Agatha、Adamなど）
+- `language`：サポートする言語リスト
+- `styles`：選択可能なスタイルリスト
+- `models`：使用可能な音声モデル
+- `samples`：言語/スタイル/モデル別サンプル音声
+- `thumbnail_image_url`：ボイス画像
+
+レスポンス例：
+
+```json
+{
+    "voice_id": "91992bbd4758bdcf9c9b01",
+    "name": "Adam",
+    "description": "",
+    "age": "young-adult",
+    "gender": "male",
+    "use_case": "meme",
+    "language": [
+       "ko",
+       "en",
+       "ja"
+       ],
+     "styles": [
+       "neutral"
+       ],
+     "models": [
+       "sona_speech_1"
+       ],
+     "samples": [
+       {
+        "language": "ja",
+        "style": "neutral",
+        "model": "sona_speech_1",
+        "url": "https://d2hxfz33hpdvze.cloudfront.net/voice-library/resources/20250502_044710.wAA5PFQe7BHNQjrfMiNrRd.speech.wav"
+        },
+       {
+        "language": "ko",
+        "style": "neutral",
+        "model": "sona_speech_1",
+        "url": "https://d2hxfz33hpdvze.cloudfront.net/voice-library/resources/20250502_044844.tehBuHoUhZcWsCfUsr15As.speech.wav"
+        },
+        {
+         "language": "en",
+         "style": "neutral",
+         "model": "sona_speech_1",
+         "url": "https://d2hxfz33hpdvze.cloudfront.net/voice-library/resources/20250201_132654.rdMFfzDsaub9qXABwti65M.speech.wav"
+         }
+         ],
+         "thumbnail_image_url": "https://d2hxfz33hpdvze.cloudfront.net/voice-library/resources/7wmvg5vEBeooDEB9xnut6s.png"
+}
+```
+
+### 2.3 `GET /v1/voices/search`で条件別フィルタリング
+
+特定の言語やスタイル、用途に合うボイスのみを探したい場合は、`GET /voices/search`エンドポイントを使用してみてください。
+
+```http
+GET /v1/voices/search?language=ko&style=happy
+```
+
+**サポートフィルター：**
+
+- `language`：言語コード（ko、en、jaなど）
+- `style`：感情スタイル（neutral、happyなど）
+- `name`、`description`、`gender`、`age`、`use_case`なども検索可能
+
+**ソート機能はサポートされておらず**、正確な条件指定が重要です。
+
+### **📌 クローンボイスを探したい場合は？**
+
+`name=My Voice`で検索すると、現在のアカウントで作成したクローンボイスをすべて確認できます。
+
+```http
+GET /v1/voices/search?name=My Voice
+```
+
+上記検索によるレスポンス例は以下の通りです。
+
+```json
+{
+    "items": [
+        {
+            "voice_id": "opSGuRvHBe7EfZ4LQga1hE",
+            "name": "My Voice 1",
+            "description": "",
+            "age": "",
+            "gender": "",
+            "use_case": "",
+            "language": [
+                "ja"
+            ],
+            "styles": [
+                "jealous"
+            ],
+            "models": [
+                "sona_speech_1"
+            ],
+            "samples": [
+                {
+                    "language": "ja",
+                    "style": "jealous",
+                    "model": "sona_speech_1",
+                    "url": "https://d2hxfz33hpdvze.cloudfront.net/voice-library/resources/20250514_160801.bDwEhmuq8JALRMP3nSHzUD.speech.wav"
+                }
+            ],
+            "thumbnail_image_url": ""
+        },
+        {
+            "voice_id": "hZGrJcUTNSNwfZDzasAVUh",
+            "name": "My Voice 2",
+            "description": "",
+            "age": "",
+            "gender": "",
+            "use_case": "",
+            "language": [
+                "en"
+            ],
+            "styles": [
+                "active"
+            ],
+            "models": [
+                "sona_speech_1"
+            ],
+            "samples": [
+                {
+                    "language": "en",
+                    "style": "active",
+                    "model": "sona_speech_1",
+                    "url": "https://d2hxfz33hpdvze.cloudfront.net/voice-library/resources/20250514_161008.ekky3mQgtgVLWLa54ispy5.speech.wav"
+                }
+            ],
+            "thumbnail_image_url": ""
+        }
+    ],
+    "total": 2,
+    "next_page_token": null
+}
+```
+
+## 3. サンプルオーディオとスタイル情報の確認
+
+ボイスオブジェクトの`samples`フィールドには、言語（language）、スタイル（style）、モデル（model）の組み合わせによるサンプルオーディオが含まれています。
+
+```json
+{
+  "language": "ko",
+  "style": "neutral",
+  "model": "sona_speech_1",
+  "url": "https://.../speech.wav"
+}
+```
+
+このURLにアクセスすると、実際の発話サンプルをダウンロードできます。キャラクターによってサポートするスタイル/言語/モデルの組み合わせが異なるため、使用前に必ず確認してください。
+
+## 4. 次のステップ
+
+ボイスIDを見つけたら、[TTS呼び出しガイド](/user-guide/text-to-speech)を参考にして、テキスト入力、パラメータ設定、オーディオ出力形式を指定して呼び出しを続けてみてください。
 
