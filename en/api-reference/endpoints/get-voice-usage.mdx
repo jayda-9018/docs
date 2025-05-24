@@ -1,1 +1,60 @@
+---
+title: "Get Voice Usage"
+description: "An API that allows you to check which voices were used and how much by period, useful for checking voice generation history."
+openapi: "/openapi.json GET /v1/voice-usage"
+---
+This API queries **TTS API usage history** for a specified period.\
+You can understand which voices, including cloned voices, were used for how many minutes.
 
+<Note>
+  Please note that inquiry dates are based on UTC+0.
+</Note>
+
+### Request Parameters
+| Parameter            | Required | Description                                   |
+| :-------------- | :-- | :----------------------------------- |
+| `start_date`    | ✅  | Inquiry start date (format: `YYYY-MM-DD`, UTC+0 based) |
+| `end_date`      | ✅  | Inquiry end date (format: `YYYY-MM-DD`, UTC+0 based) |
+| `x-sup-api-key` | ⭕  | API Key for authentication (included in Header)             |
+
+### Example Request
+```http
+GET /v1/voice-usage?start_date=2025-05-19&end_date=2025-05-28
+x-sup-api-key: [YOUR_API_KEY]
+```
+
+### Response Example
+```json
+{
+  "usages": [
+    {
+      "date": "2025-05-22",
+      "voice_id": "e5f6fb1a53d0add87afb4f",
+      "name": "Agatha",
+      "style": "neutral",
+      "language": "en",
+      "model": "sona_speech_1",
+      "total_minutes_used": 12.43251349
+    },
+    {
+      "date": "2025-05-24",
+      "voice_id": "opSGuRvHBe7EfZ4LQga1hE",
+      "name": "My Voice 1",
+      "style": "sad",
+      "language": "ko",
+      "model": "sona_speech_1",
+      "total_minutes_used": 3.24566213
+    }
+  ]
+}
+```
+
+### Usage Examples
+- **TTS usage aggregation** by specific date
+- Understanding which characters/styles were used most
+- **Can be used for monthly budget management or internal reporting logs**
+
+### Important Notes
+- Maximum inquiry period is 30 days.
+- If there are no usage records during the period, an empty array is returned.
+- `total_minutes_used` is based on the length of actually generated speech.
