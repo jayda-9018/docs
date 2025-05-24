@@ -1,1 +1,78 @@
+---
+title: "クイックスタート"
+description: "Supertone APIを使用して高品質AI音声を生成する方法をステップバイステップでご案内します。"
+---
+このページは、Supertone APIを初めて使用される方が\
+**素早く音声合成の流れを体験**できるように構成されています。
+以下の順序に従って、実際の呼び出しまで完了してみてください。
+
+## 1. API Keyを発行し、認証の準備をする
+Supertone APIは、API Keyベースの認証を使用します。\
+コンソールに登録し、新しいサービスを作成すると、すぐにAPI Keyを発行できます。
+
+- コンソールURL: https://console.supertoneapi.com
+- 一つのアカウントにつき最大3つのAPI Keyを発行でき、必要に応じて廃棄・再発行も可能です。
+- API呼び出し時には、`x-sup-api-key`ヘッダーに発行されたキーを入れてください。
+
+```bash
+x-sup-api-key: [YOUR_API_KEY]
+```
+
+## 2. 使用可能なボイスIDを確認する
+ボイスIDは、テキストをどの声で読むかを決定するキーです。現在のアカウントで使用可能なボイスは、以下の3つの方法で確認できます。
+
+### 2.1 Supertone Playからコピーする
+ボイスIDを確認する最も簡単な方法は、Supertone Playのボイスライブラリからコピーすることです。
+
+以下の例の画像のように、各ボイス内の「Copy voice ID」ボタンをクリックすると、そのボイスの`voice_id`がクリップボードにコピーされます。
+
+<Frame>
+  ![](/images/supertone-play-copy-voice-id-preset.png)
+</Frame>
+
+クローンボイスも同じ方法で`voice_id`をコピーできます。
+
+<Frame>
+  ![](/images/supertone-play-copy-voice-id-cloned.png)
+</Frame>
+
+コピーしたIDは、コンソールやAPIで直接使用できます。
+
+### 2.2 すべてのボイスを一括確認する
+GET /voicesエンドポイントを使用すると、条件なしに使用可能な全ボイスリストを取得できます。
+
+```http
+GET /v1/voices
+```
+
+### 2.3 条件に合うボイスを探す
+GET /v1/voices/searchでは、言語やスタイルなどを基準にボイスをフィルタリングできます。
+
+- 例：韓国語ボイスでスタイルが「happy」の場合のみ照会
+```http
+GET /v1/voices/search?language=ko&style=happy
+```
+
+各ボイスのidフィールドを確認して、実際の呼び出しに使用できます。
+
+## 3. 音声を生成する
+ボイスIDを確認したら、今度は実際にテキストを音声に変換してみることができます。
+以下は基本的な呼び出し例です：
+
+```http
+POST /v1/text-to-speech/e5f6fb1a53d0add87afb4f
+Content-Type: application/json
+x-sup-api-key: [YOUR_API_KEY]
+
+{
+  "text": "안녕하세요, 수퍼톤 API입니다.",
+  "language": "ko",
+  "style": "neutral",
+  "model": "sona_speech_1"
+}
+```
+
+レスポンスはオーディオファイルストリーム形式（WAV）で返され、ヘッダーのX-Audio-Length値を通じて生成された音声の長さを確認できます。
+
+これでSupertone APIを連携する準備が完了しました。次のステップに進んで、より多様な設定と高度な使用法を確認してみてください。
 
