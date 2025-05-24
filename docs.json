@@ -22,7 +22,8 @@
                 "pages": [
                   "ko/user-guide/welcome",
                   "ko/user-guide/quickstart",
-                  "ko/user-guide/text-to-speech-guide"
+                  "ko/user/guide/voice-selection",
+                  "ko/user-guide/text-to-speech"
                 ]
               },
               {
@@ -135,7 +136,8 @@
                 "pages": [
                   "ja/user-guide/welcome",
                   "ja/user-guide/quickstart",
-                  "ja/user-guide/text-to-speech-guide"
+                  "ja/user/guide/voice-selection",
+                  "ja/user-guide/text-to-speech"
                 ]
               },
               {
@@ -248,7 +250,8 @@
                 "pages": [
                   "en/user-guide/welcome",
                   "en/user-guide/quickstart",
-                  "en/user-guide/text-to-speech-guide"
+                  "en/user/guide/voice-selection",
+                  "en/user-guide/text-to-speech"
                 ]
               },
               {
