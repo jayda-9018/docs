@@ -1,1 +1,118 @@
+---
+title: "よくある質問"
+description: "API使用中によく受ける質問とその回答をまとめました。"
+---
+APIを初めて使用する方から、クローンボイスまで連携したユーザーまで、最もよく聞かれる質問をトピック別にまとめました。
 
+## 1. API開始について
+<Accordion title="API Keyはどこで発行できますか？">
+  [コンソール](https://console.supertoneapi.com)でサービスに登録すると、即座に発行できます。アカウントにつき最大3つのKeyを使用でき、流出時は廃棄・再発行が可能です。
+</Accordion>
+
+<Accordion title="APIはどのように連携しますか？">
+  HTTPリクエスト時に、`x-sup-api-key`ヘッダーに発行されたKeyを入れれば完了です。詳細な連携方法は[クイックスタート](/ja/user-guide/quickstart)を参照してください。
+</Accordion>
+
+<Accordion title="Playとは異なるアカウントで利用する必要がありますか？">
+  いいえ。PlayとAPIは同じアカウントベースで運営されています。
+</Accordion>
+
+## 2. ボイス・呼び出し関連
+<Accordion title="使用可能なボイスIDはどこで確認できますか？">
+  ボイスIDは以下の3つの方法で確認できます：
+  1. Supertone Play内のボイスライブラリからコピー
+  2. GET /v1/voicesエンドポイントを呼び出して全体照会
+  3. GET /v1/voices/searchエンドポイントを呼び出して条件検索
+  詳細は[ボイス選択ガイド](/ja/user-guide/voice-selection)をご確認ください。
+</Accordion>
+
+<Accordion title="クローンボイスもAPIで使用できますか？">
+  はい。Playで生成したクローンボイスは、同じアカウントでAPIでも呼び出すことができます。クローンボイスの生成はPlayでのみ可能です。
+</Accordion>
+
+<Accordion title="クローンボイスのIDはどのように見つけることができますか？">
+  `GET /v1/voices/search?name=My Voice`で検索すると、アカウント内で生成されたクローンボイスのみをフィルタリングして確認できます。
+  詳細は[ボイス選択ガイド](/ja/user-guide/voice-selection)をご確認ください。
+</Accordion>
+
+<Accordion title="ボイスIDだけ分かれば呼び出し可能ですか？">
+  いいえ。`voice_id`以外にも`language`、`style`、`model`の組み合わせが正確に一致する必要があり、音声が正常に生成されます。
+</Accordion>
+
+<Accordion title="ボイスごとにどのような組み合わせが可能ですか？">
+  `samples`フィールドを通じて、ボイス別でサポートする言語/スタイル/モデルの組み合わせとサンプルオーディオを確認できます。
+  詳細は[ボイス選択ガイド](/ja/user-guide/voice-selection)をご確認ください。
+</Accordion>
+
+<Accordion title="styleパラメータは必ず入力する必要がありますか？">
+  いいえ。styleは選択項目で、未入力時はシステムのデフォルトスタイルが自動適用されます。
+</Accordion>
+
+<Accordion title="音声速度やピッチを調節できますか？">
+  `voice_settings`を通じて`pitch_shift`、`pitch_variance`、`speed`を調整できます。
+</Accordion>
+
+<Accordion title="Predict Duration APIはどのような用途ですか？">
+  入力したテキストの発話長さを予測してくれる機能です。**クレジットは差し引かれません**。
+</Accordion>
+
+## 3. クレジット・料金プラン
+<Accordion title="APIの料金プランはどのようになっていますか？">
+  Playと同じクレジットシステムを使用します。[Play購読ページ](https://play.supertone.ai/subscription)で利用可能なプランをご確認ください。
+</Accordion>
+
+<Accordion title="クレジット残高はどのように確認できますか？">
+  以下の2つの方法で確認可能です：
+  - `GET /v1/credits` API呼び出し
+  - コンソールまたはPlayのダッシュボード確認
+</Accordion>
+
+<Accordion title="クレジットはAPIでのみ差し引かれますか？">
+  いいえ。PlayとAPIは同じクレジットを共有します。
+</Accordion>
+
+<Accordion title="Playで生成した音声をAPIで使用できますか？">
+  はい。同じアカウント内で生成したクローンボイスは、別途設定なしでAPIで呼び出し可能です。
+</Accordion>
+
+## 4. エラー・トラブルシューティング
+<Accordion title="呼び出し時によく発生するエラーは何ですか？">
+  - 401: API Keyエラー
+  - 402: クレジット不足
+  - 403: 権限のないボイス呼び出し
+  - 400: パラメータエラー、テキスト超過など
+  - 429: 呼び出し制限超過
+  詳細は[エラー処理](/ja/user-guide/handling-errors)ガイドをご確認ください。
+</Accordion>
+
+<Accordion title="エラーコードはどこで確認できますか？">
+  [エラー処理](/ja/user-guide/handling-errors)ガイドで確認できます。
+</Accordion>
+
+<Accordion title="呼び出しが繰り返し失敗します。">
+  [エラー処理](/ja/user-guide/handling-errors)ガイドを参考に、以下の内容をご確認ください：
+  - ヘッダーにx-sup-api-keyが含まれているか確認
+  - Content-Type: application/json漏れの有無を確認
+  - voice_idが実際の値に置換されているか確認
+  問題が続く場合は、[カスタマーサポート](https://support.supertone.ai/hc/en-us/categories/10267196754959-Play?_gl=1*wccieo*_gcl_au*NDgxOTUwMjcwLjE3NDc4MjQ4NDE.)ページを通じてお問い合わせください。
+</Accordion>
+
+<Accordion title="呼び出し回数制限はどのようになっていますか？">
+  基本的に1分間に20回以下の呼び出しを推奨します。より高いトラフィックが必要な場合は、別途お問い合わせが必要です。
+  > 🏢 [エンタープライズお問い合わせ](https://docs.google.com/forms/d/1YexQpjpK0ZEou12blTytkZLqvrV-Uv95GbhxoOQ54R8/edit)
+  > 
+</Accordion>
+
+## 5. 運営ポリシー・サポート
+<Accordion title="APIは誰でも使用できますか？">
+  はい。コンソール登録後にクレジットをチャージすれば、すぐに使用でき、別途承認は必要ありません。
+</Accordion>
+
+<Accordion title="エンタープライズプランもありますか？">
+  はい。チーム単位での使用、ユーザーアカウント分離、呼び出し制限拡張など、別途条件が必要な場合はsupportを通じてお問い合わせください。
+  > 🏢 [エンタープライズお問い合わせ](https://docs.google.com/forms/d/1YexQpjpK0ZEou12blTytkZLqvrV-Uv95GbhxoOQ54R8/edit)
+</Accordion>
+
+<Accordion title="問題が解決されない場合、どこにお問い合わせすればよいですか？">
+  [カスタマーサポート](https://support.supertone.ai/hc/en-us/categories/10267196754959-Play?_gl=1*9ehgt*_gcl_au*NDgxOTUwMjcwLjE3NDc4MjQ4NDE.)ページを通じて1:1お問い合わせを送信していただければ、迅速に回答いたします。
+</Accordion>
