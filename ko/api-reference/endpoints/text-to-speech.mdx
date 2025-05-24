@@ -1,1 +1,56 @@
+---
+title: "Text To Speech"
+description: "텍스트를 음성으로 변환하는 TTS API의 요청 구조와 파라미터 사용 방법, 오류 주의사항을 안내합니다."
+openapi: "/openapi.json POST /v1/text-to-speech/{voice_id}"
+---
 
+지정한 보이스로 텍스트를 음성으로 변환하는 **TTS(Text-to-Speech) API**입니다.\
+이 API를 통해 원하는 문장을 자연스러운 음성으로 생성할 수 있습니다.
+
+### 기본 사용 방식
+
+- `{voice_id}`: **캐릭터 단위의 ID**만 사용 가능
+- `language`, `style`, `model` 등의 파라미터는 **Request Body**에 포함됩니다
+
+### Request Body 항목 설명
+
+| 항목               | 필수 | 설명                                                                      |
+| :--------------- | :-- | :---------------------------------------------------------------------- |
+| `text`           | ✅  | 변환할 텍스트. 최대 300자까지 입력 가능                                                |
+| `language`       | ✅  | 텍스트의 언어. `ko`, `en`, `ja` 중 하나                                          |
+| `style`          | ❌  | 감정 스타일. 예: `neutral`, `happy`, `sad` 등. 지정하지 않으면 해당 캐릭터의 기본 스타일이 적용됨    |
+| `model`          | ❌  | 사용 모델. 기본값은 `sona_speech_1`. 현재는 이 모델만 사용 가능                            |
+| `voice_settings` | ❌  | 음정/속도 조절. `pitch_shift`, `pitch_variance`, `speed` 필드 포함 (기본값: 0, 1, 1) |
+
+### 사용 예시
+
+```http
+POST /v1/text-to-speech/{voice_id}
+Content-Type: application/json
+x-sup-api-key: [YOUR_API_KEY]
+
+{
+  "text": "Thank you for calling.",
+  "language": "en",
+  "style": "happy",
+  "model": "sona_speech_1",
+  "voice_settings": {
+    "pitch_shift": 0,
+    "pitch_variance": 1,
+    "speed": 1
+  }
+}
+```
+
+### 응답
+
+- 응답 본문은 **binary audio file**으로 반환되며, 기본 포맷은 `wav`
+- `output_format=mp3`를 쿼리 파라미터로 전달하면 mp3 형식으로도 응답 가능
+- `X-Audio-Length` 헤더를 통해 음성의 길이(초)를 확인할 수 있음
+
+### 유의사항
+
+- `voice_id`는 **기존** `{character-language-style}`**형식이 아닌 캐릭터 단위 ID** 여야 합니다.
+- `text` 길이는 **300자 초과 시 400 오류**가 발생합니다.
+- `style`이 없는 경우에도 호출 가능하지만, 캐릭터에 따라 default style이 다를 수 있어 Get Voices API를 호출해 디폴트 스타일을 확인해주세요(스타일 배열 중 처음 오는 값이 디폴트).
+- 응답의 음성 파일은 직접 저장하거나 재생할 수 있습니다 (클라이언트에 따라 적절한 처리 필요).
