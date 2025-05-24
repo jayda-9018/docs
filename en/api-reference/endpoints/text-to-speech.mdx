@@ -1,1 +1,50 @@
+---
+title: "Text To Speech"
+description: "Guides the request structure and parameter usage methods, and error precautions for the TTS API that converts text to speech."
+openapi: "/openapi.json POST /v1/text-to-speech/{voice_id}"
+---
+This is the **TTS (Text-to-Speech) API** that converts text to speech using a specified voice.\
+Through this API, you can generate natural speech from desired sentences.
 
+### Basic Usage
+- `{voice_id}`: Only **character-based IDs** can be used
+- Parameters like `language`, `style`, `model` are **included in the Request Body**
+
+### Request Body Items Description
+| Item               | Required | Description                                                                      |
+| :--------------- | :-- | :---------------------------------------------------------------------- |
+| `text`           | ✅  | Text to convert. Up to 300 characters can be input                                                |
+| `language`       | ✅  | Language of the text. One of `ko`, `en`, `ja`                                          |
+| `style`          | ❌  | Emotional style. E.g., `neutral`, `happy`, `sad`, etc. If not specified, the character's default style is applied    |
+| `model`          | ❌  | Model to use. Default is `sona_speech_1`. Currently only this model is available                            |
+| `voice_settings` | ❌  | Pitch/speed adjustment. Includes `pitch_shift`, `pitch_variance`, `speed` fields (defaults: 0, 1, 1) |
+
+### Usage Example
+```http
+POST /v1/text-to-speech/{voice_id}
+Content-Type: application/json
+x-sup-api-key: [YOUR_API_KEY]
+
+{
+  "text": "Thank you for calling.",
+  "language": "en",
+  "style": "happy",
+  "model": "sona_speech_1",
+  "voice_settings": {
+    "pitch_shift": 0,
+    "pitch_variance": 1,
+    "speed": 1
+  }
+}
+```
+
+### Response
+- Response body is returned as **binary audio file**, default format is `wav`
+- Can also respond in mp3 format by passing `output_format=mp3` as query parameter
+- Voice length (seconds) can be checked through `X-Audio-Length` header
+
+### Important Notes
+- `voice_id` must be a **character-based ID**, not the **existing** `{character-language-style}` **format**.
+- **400 error occurs when `text` length exceeds 300 characters**.
+- Calls are possible even without `style`, but default styles may vary by character, so please call Get Voices API to check the default style (the first value in the styles array is the default).
+- The audio file in the response can be directly saved or played (appropriate handling required depending on client).
