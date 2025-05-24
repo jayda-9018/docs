@@ -47,17 +47,17 @@ x-sup-api-key: [YOUR_API_KEY]
 GET /voices 엔드포인트를 사용하면, 조건 없이 사용 가능한 전체 보이스 목록을 받아올 수 있습니다.
 
 ```http
-GET /voices
+GET /v1/voices
 ```
 
 ### 2.3 조건에 맞는 보이스 찾기
 
-GET /voices/search에서는 언어, 스타일 등을 기준으로 보이스를 필터링할 수 있습니다.
+GET /v1/voices/search에서는 언어, 스타일 등을 기준으로 보이스를 필터링할 수 있습니다.
 
 - 예: 한국어 보이스 중 스타일이 'happy'인 경우만 조회
 
 ```http
-GET /voices/search?language=ko&style=happy
+GET /v1/voices/search?language=ko&style=happy
 ```
 
 → 각 보이스의 id 필드를 확인해 실제 호출에 사용할 수 있습니다.
@@ -68,7 +68,7 @@ GET /voices/search?language=ko&style=happy
 아래는 기본적인 호출 예시입니다:
 
 ```http
-POST /text-to-speech/e5f6fb1a53d0add87afb4f
+POST /v1/text-to-speech/e5f6fb1a53d0add87afb4f
 Content-Type: application/json
 x-sup-api-key: [YOUR_API_KEY]
 

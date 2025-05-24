@@ -35,12 +35,12 @@ description: "사용할 보이스 ID를 찾는 방법과 API/Play에서 보이�
   ![](/images/supertone-play-copy-voice-id-cloned.png)
 </Frame>
 
-### 2.2 `GET /voices`로 전체 보이스 목록 받기
+### 2.2 `GET /v1/voices`로 전체 보이스 목록 받기
 
 API를 통해 **조건 없이 사용 가능한 전체 보이스 목록**을 확인하려면 `GET /voices` 엔드포인트를 사용하세요.
 
 ```http
-GET /voices
+GET /v1/voices
 ```
 
 응답에는 다음과 같은 정보가 포함됩니다:
@@ -98,12 +98,12 @@ GET /voices
 }
 ```
 
-### 2.3 `GET /voices/search`로 조건별 필터링
+### 2.3 `GET /v1/voices/search`로 조건별 필터링
 
 특정 언어나 스타일, 용도에 맞는 보이스만 찾고 싶다면`GET /voices/search` 엔드포인트를 사용해보세요.
 
 ```http
-GET /voices/search?language=ko&style=happy
+GET /v1/voices/search?language=ko&style=happy
 ```
 
 **지원 필터:**
@@ -114,13 +114,12 @@ GET /voices/search?language=ko&style=happy
 
 **정렬 기능은 지원되지 않으며**, 정확한 조건 지정이 중요합니다.
 
-
 **클론드 보이스를 찾고 싶다면?**
 
 `name=My Voice`로 검색하면 현재 계정에서 생성한 클론드 보이스를 모두 확인할 수 있습니다.
 
 ```http
-GET /voices/search?name=My Voice
+GET /v1/voices/search?name=My Voice
 ```
 
 위 검색에 따른 응답 예시는 아래와 같습니다.

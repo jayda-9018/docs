@@ -10,7 +10,7 @@ Supertone API를 통해 텍스트를 음성으로 변환하려면 특정 보이�
 ## 1. 호출 엔드포인트와 기본 구조
 
 ```http
-POST /text-to-speech/{voice_id}
+POST /v1/text-to-speech/{voice_id}
 ```
 
 ### 필수 헤더
@@ -43,7 +43,7 @@ Content-Type: application/json
 ## 3. 전체 요청 예시
 
 ```http
-POST /text-to-speech/91992bbd4758bdcf9c9b01?output_format=mp3
+POST /v1/text-to-speech/91992bbd4758bdcf9c9b01?output_format=mp3
 x-sup-api-key: [YOUR_API_KEY]
 Content-Type: application/json
 
@@ -101,7 +101,7 @@ X-Audio-Length: 3.42
 음성 생성 없이도, 입력 텍스트가 몇 초 분량의 발화를 유도할지 예측할 수 있습니다.
 
 ```http
-POST /predict-duration/{voice_id}
+POST /v1/predict-duration/{voice_id}
 ```
 
 - 요청 방식은 TTS와 동일
