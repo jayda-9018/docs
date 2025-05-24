@@ -1,5 +1,26 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Get Credit Balance"
+description: "A simple API that queries the available credit balance of the current account."
+openapi: "/openapi.json GET /v1/credits"
 ---
+This API queries the **available credit balance** of the current account.\
+Since Supertone Play and API use the same credit system, credits charged in Play apply directly to the API as well.
 
+### Request Method
+```http
+GET /v1/credits
+x-sup-api-key: [YOUR_API_KEY]
+```
+
+### Response Example
+```json
+{
+  "balance": 146
+}
+```
+This means 146 credits are currently available.
+
+### Reference Information
+- Credits are charged on a **per-minute basis**.
+- Credits are **shared between Play and API**.
+- Basic trial credits may be provided upon new registration.
