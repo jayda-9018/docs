@@ -1,50 +1,12 @@
 ---
 title: "Search Voices"
-description: "Explains the parameter usage and search examples of the Search Voices API, which allows filtering voices by various conditions."
-openapi: "/openapi.json GET /sandbox/voices/search"
+description: "Explains parameter usage and search examples for the Search Voices API that can filter voices by various conditions."
+openapi: "/openapi.json GET"
 ---
-
-This is an **API that allows you to search for voices based on various conditions**.\
-You can filter voices available in your account (including regular + clone voices) by name, language, style, and various other conditions.
-
-### Key Parameters
-| Parameter          | Description                                    | Example                                      |
-| :---------------- | :----------------------------- | :------------------------------------------ |
-| `name`            | Search by voice name (partial match)           | `My Voice` (→ Find clone voices)             |
-| `language`        | Voice language code (multiple inputs with comma) | `ko`, `en`, `ja`                            |
-| `gender`          | Voice gender (multiple inputs with comma)      | `male`, `female`                            |
-| `age`             | Voice age group                                | `teen`, `adult`, `senior`, etc.             |
-| `use_case`        | Filter based on recommended use cases          | `audiobook`, `narration`, `advertisement`, etc. |
-| `style`           | Emotional style filter                         | `neutral`, `happy`, `sad`, `angry`, etc.    |
-| `model`           | Filter based on supported voice models         | `sona_speech_1`, etc.                       |
-| `page_size`       | Number of items per page (default: 20, max: 100) | `50`                                      |
-| `next_page_token` | Token for pagination                           | `nextPageToken` value received from previous response |
-
-> ⚠️ The `sort` parameter is not supported.
-
-### Example 1: Finding Clone Voices
-```http
-GET /sandbox/voices/search?name=My Voice
-```
-→ Search for clone voices (e.g., `My Voice`) registered in your account to get the `voice_id`.
-
-### Example 2: Style and Language Condition Filters
-```http
-GET /sandbox/voices/search?style=happy&language=ko,en
-```
-→ Only retrieves voices that include happy in their style and include at least one of Korean (ko) or English (en) in their languages.
-
-### Example 3: Applying Pagination
-```http
-GET /sandbox/voices/search?page_size=50&next_page_token=eyJpZCI6IjEyMzQ1In0=
-```
-→ Fetches the next page in units of 50 items.\
-→ The `next_page_token` value can be obtained from the previous response.
-
-### Notes
-- All parameters **can accept multiple conditions (OR) separated by commas.**
-  ```http
-  language=ko,en&style=happy,sad
-  ```
-- If you enter a combination that doesn't exist, the response will still be 200 OK, but the results may be empty.
-- The response structure includes an `items` array and a `next_page_token` value, along with each voice's `voice_id`, styles, sample URLs, and more.
+<Warning>
+  The document you are currently viewing is for `/sandbox/voices/search`.\
+  The same functionality has been officially deployed at the `/v1/voices/search` path,\
+  and for new integrations, you must use `/v1/voices/search`.\
+  If you were previously integrated and using the sandbox, please update the url to `/v1/..` by June 6th.
+  👉 View official documentation: [GET /v1/voices/search](/en/api-reference/endpoints/search-voices)
+</Warning>
