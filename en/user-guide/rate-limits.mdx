@@ -2,9 +2,11 @@
 title: "Rate Limits"
 description: "Basic call limit policies to prevent excessive requests."
 ---
+
 Supertone API operates basic call limit policies to prevent excessive requests for stable service operation.
 
-## 1. Basic Policy
+## 1. Rate Limit
+
 Currently, the following call limits apply to all accounts:
 
 <Card title="20 requests per minute" icon="wifi">
@@ -13,12 +15,14 @@ Currently, the following call limits apply to all accounts:
 
 This limit applies commonly to all API requests including voice queries, text-to-speech conversion, usage queries, etc.
 
-## 2. Behavior When Limits Are Exceeded
+## 2.  When Limit Is Exceeded
+
 To prevent system overload, **temporary blocking or speed reduction may occur** when requests exceed a certain level.
 
 ※ Actual blocking varies depending on the situation, and in some requests, responses may be delayed or missed without additional notice.
 
-## 3. When Increased Call Frequency Is Needed
+## 3. Need Higher Rate Limit?
+
 If you need to make API calls more frequently, you can apply more flexible call policies through **Enterprise Plan** or separate contracts. You can negotiate call limit conditions according to your operating environment or service characteristics.
 
 > 🏢 [Enterprise Inquiry](https://docs.google.com/forms/d/1YexQpjpK0ZEou12blTytkZLqvrV-Uv95GbhxoOQ54R8/edit)

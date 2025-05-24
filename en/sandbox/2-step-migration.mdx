@@ -27,6 +27,7 @@ Each step **proceeds sequentially according to the schedule**, allowing you to t
 Replace existing `v1` API usage code with `sandbox` **API for testing**.
 
 **To-do during this period:**
+
 - Replace existing voice_id with **new ID \+ parameters (language, style)** combination
 - Modify API call URL from `/v1/...` to `/sandbox/...`
 - If using legacy API Key → **Issue new API Key** from console
@@ -34,7 +35,7 @@ Replace existing `v1` API usage code with `sandbox` **API for testing**.
 - Enterprise customers: **Register for enterprise and consult on account/voice settings**
 - Conduct tests for all features (TTS, voice search, usage check, etc.)
 
-> ⏱ *TIP: This period is the final check before actual service implementation.*
+> ⏱ _TIP: This period is the final check before actual service implementation._
 
 ### ✅ Step 2: Official Transition (May 28 - June 6)
 
@@ -43,6 +44,7 @@ With the official grand opening, restore API calls back to `v1`.\
 You only need to change the `/sandbox/` path back to `/v1/`.
 
 **Changes afterward:**
+
 - `v1` API specifications will be changed to match the sandbox
 - Credit system and voice_id structure remain the same as applied in the sandbox
 - `/sandbox` **will no longer be provided** (ending June 6)

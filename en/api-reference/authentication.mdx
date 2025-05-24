@@ -2,30 +2,39 @@
 title: "Authentication"
 description: "Supertone API uses API Key-based authentication. All requests must be authenticated by including the issued API Key in the header."
 ---
-## 1. API Key Issuance
+
+## 1. Issue API Keys
+
 You can get an API Key immediately after signing up for the service in Supertone API console.
+
 - You can issue up to 3 API Keys per account.
 - In case of leakage, immediate deletion and reissuance are possible from the console.
 
 ## 2. Authentication Method
+
 Supertone API uses a custom HTTP header called `x-sup-api-key` for authentication.
+
 ```http
 x-sup-api-key: [YOUR_API_KEY]
 ```
+
 This header must be included in all requests, and authentication errors will occur if omitted.
 
 ## 3. Example
+
 ```bash
 curl -X GET "https://supertoneapi.com/v1/voices" \
   -H "x-sup-api-key: yourapikeyhere"
 ```
 
 ## 4. Authentication Failure
+
 - `401 Unauthorized`: When API Key is missing or invalid
 - `403 Forbidden`: When there's no access permission for the resource (e.g., no cloned voice permission)
 
 > When errors occur, please also refer to the [Error Handling](/en/user-guide/handling-errors) guide.
 
 ## 5. Security Considerations
+
 - Do not expose API Keys in client-side code; always manage them securely on the server side.
 - If a key is exposed externally, immediately revoke it from the console and issue a new one.

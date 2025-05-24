@@ -2,11 +2,15 @@
 title: "Error Handling"
 description: "Types of errors that may occur during requests and their causes and solutions."
 ---
+
 This guide covers the main types of errors that can occur during API calls and their solutions. Supertone API indicates the cause of problems through **HTTP status codes**, and through this document, you can check in advance what errors may occur in which situations.
 
-## 1. Error Code List
+## 1. Error Codes
+
 ### **400 Bad Request**
+
 This occurs when there's a problem with the request format itself. The most common causes are:
+
 - Missing required fields like `text`, `language`
 - Entering non-existent values for `style` or `model`
 - `voice_settings` parameter values outside the allowed range (e.g., pitch_shift: 20)
@@ -16,14 +20,18 @@ This occurs when there's a problem with the request format itself. The most comm
 > **Please check your request body again.** Using an editor or Linter to validate JSON structure is also recommended.
 
 ### **401 Unauthorized**
+
 This occurs when the API Key is missing or incorrect.
+
 - Missing `x-sup-api-key` header
 - Using an incorrect key (different account key, expired key, etc.)
 
 > **Please verify that you entered the API Key issued from the console correctly.** Be careful not to include leading or trailing spaces when copying strings.
 
 ### **402 Not Enough Credits**
+
 This occurs when there aren't enough credits remaining to process the API call.
+
 - Credits are 0 or insufficient for the expected call cost
 - Plan not purchased in Play/console
 
@@ -31,7 +39,9 @@ This occurs when there aren't enough credits remaining to process the API call.
 > Credits are also deducted when calling cloned voices.
 
 ### **403 Forbidden**
+
 This occurs when trying to access resources without permission.
+
 - The `voice_id` doesn't belong to your account (e.g., another user's cloned voice)
 - Sub-users of enterprise accounts trying to use resources they don't have permission for
 - Using an API Key not issued from the console
@@ -41,7 +51,9 @@ This occurs when trying to access resources without permission.
 > 403 occurs if the account is different.
 
 ### **404 Not Found**
+
 This occurs when the specified resource cannot be found.
+
 - Using a non-existent `voice_id`
 - When filtering with too narrow conditions in `GET /voices/search` results in 0 results
 - Typo in endpoint path
@@ -50,7 +62,9 @@ This occurs when the specified resource cannot be found.
 > `voice_id` can be verified through the console or `GET /voices`.
 
 ### **408 Request Timeout**
+
 This occurs when the server cannot process the request within a certain time.
+
 - When the network is unstable or the request body is too large and complex
 - When processing delays occur internally on the server
 
@@ -58,7 +72,9 @@ This occurs when the server cannot process the request within a certain time.
 > You can try simplifying the request or reducing input values.
 
 ### **429 Too Many Requests**
+
 This occurs when too many requests come in within a certain time.
+
 - The basic call limit is **20 times/minute** per account
 - Exceeding this standard may temporarily delay or block responses
 
@@ -66,14 +82,17 @@ This occurs when too many requests come in within a certain time.
 > For enterprise users, call limit increases are possible. ([Enterprise Inquiry](https://docs.google.com/forms/d/1YexQpjpK0ZEou12blTytkZLqvrV-Uv95GbhxoOQ54R8/edit))
 
 ### **500 Internal Server Error**
+
 This is an unexpected internal server error.
+
 - It's likely a temporary server issue
 - Can occur intermittently even when there's no problem with the request itself
 
 > If the same request repeatedly fails, please contact [customer support](https://support.supertone.ai/hc/en-us/categories/10267196754959-Play?_gl=1*tr7a0x*_gcl_au*NDgxOTUwMjcwLjE3NDc4MjQ4NDE.) including the request body.\
 > Logging the occurrence time helps with problem resolution.
 
-## 2. Frequently Occurring Cases Summary
+## 2. Common Error Cases
+
 - Getting 400 by calling without sending request body
 - Getting 401 by incorrectly setting API Key in Postman environment variables
 - Getting 403 when trying to call cloned voice from different account
@@ -81,6 +100,7 @@ This is an unexpected internal server error.
 - Getting 400 because input text was 310 characters (exceeding 300 character limit)
 
 ## 3. Error Response Tips
+
 - Most errors can be immediately identified along with HTTP status codes
 - Error messages don't include detailed descriptions, so carefully review your request content
 - For recurring errors, contact [customer support](https://support.supertone.ai/hc/en-us/categories/10267196754959-Play?_gl=1*tr7a0x*_gcl_au*NDgxOTUwMjcwLjE3NDc4MjQ4NDE.) including request body and header content.
