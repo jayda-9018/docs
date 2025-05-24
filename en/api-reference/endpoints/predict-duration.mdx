@@ -1,5 +1,48 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Predict Duration"
+description: "An API that returns only the expected length without generating speech, useful for billing prediction or text length adjustment."
+openapi: "/openapi.json POST /v1/predict-duration/{voice_id}"
 ---
+This API **does not actually generate speech**,\
+but only returns the expected speech length (in seconds) based on the input text.
+It's **useful for understanding expected credit consumption or adjusting text length** before making TTS calls.
 
+### Usage
+- The calling method and Request Body are almost identical to the `text-to-speech` API.
+- However, only the `duration` value is returned as a result, not audio.
+- **No credits are consumed** when calling the Predict Duration API.
+
+### Request Body Items Description
+| Item               | Required | Description                                     |
+| :--------------- | :-- | :------------------------------------- |
+| `text`           | ✅  | Text to analyze. Maximum 300 characters                     |
+| `language`       | ✅  | Text language. One of `ko`, `en`, `ja`          |
+| `style`          | ❌  | Emotional style. Default style is used if not specified    |
+| `model`          | ❌  | Default is `sona_speech_1`. Currently only this model is available |
+| `voice_settings` | ❌  | Speech speed or pitch adjustment values. May affect result length       |
+
+### Usage Example
+```http
+POST /v1/predict-duration/{voice_id}
+Content-Type: application/json
+x-sup-api-key: [YOUR_API_KEY]
+
+{
+  "text": "This is a long-form sentence for duration prediction.",
+  "language": "en",
+  "style": "neutral"
+}
+```
+
+### Response Example
+```json
+{
+  "duration": 3.57381983
+}
+```
+This means that generating this text would create approximately 3.57 seconds of audio.
+
+### Usage Tips
+- **Credits are not actually deducted.** (because no speech generation occurs)
+- You can get results very similar to when actually calling with the same text.
+- Since adjusting `voice_settings.speed` changes the length, it's better to test with a fixed speech speed.
