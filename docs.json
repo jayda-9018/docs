@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
+  "theme": "maple",
   "name": "Supertone API Documentation",
   "description": "Empowering Voices, Simplifying AI Integration",
   "colors": {
