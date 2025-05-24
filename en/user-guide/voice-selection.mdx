@@ -1,1 +1,205 @@
+---
+title: "Voice Selection Guide"
+description: "A guide on how to find voice IDs to use and how to query voice information in API/Play."
+---
 
+The most important element in voice synthesis is the **voice ID** that determines which voice will read the text. This document guides you on how to find the desired voice and how to check voice information needed for API calls.
+
+## 1. What is a Voice ID?
+
+`voice_id` is a value that identifies one unique character.
+
+When synthesizing speech, you need to pass **language**, **style**, and **model** information along with this voice ID to generate accurate speech.
+
+## 2. Three Ways to Find Voice IDs
+
+### 2.1 Copy from Supertone Play
+
+The fastest and most intuitive way is to copy the `voice_id` from the voice library in Supertone Play.
+
+- Click the **Copy voice ID** button within each voice item
+- The voice's ID will be copied to your clipboard
+- Cloned voices can also be checked in a separate tab
+
+[Go to Supertone Play](https://play.supertone.ai)
+
+**Preset Voice Example:**
+
+<Frame>
+  ![](/images/supertone-play-copy-voice-id-preset.png)
+</Frame>
+
+**Cloned Voice Example:**
+
+<Frame>
+  ![](/images/supertone-play-copy-voice-id-cloned.png)
+</Frame>
+
+### 2.2 Get Complete Voice List with `GET /v1/voices`
+
+To check the **complete list of available voices without conditions** through the API, use the `GET /voices` endpoint.
+
+```http
+GET /v1/voices
+```
+
+The response includes the following information:
+
+- `voice_id`: ID to be used in calls
+- `name`: Character name (e.g., Agatha, Adam, etc.)
+- `language`: List of supported languages
+- `styles`: List of selectable styles
+- `models`: Available voice models
+- `samples`: Sample audio by language/style/model
+- `thumbnail_image_url`: Voice image
+
+Response example:
+
+```json
+{
+    "voice_id": "91992bbd4758bdcf9c9b01",
+    "name": "Adam",
+    "description": "",
+    "age": "young-adult",
+    "gender": "male",
+    "use_case": "meme",
+    "language": [
+       "ko",
+       "en",
+       "ja"
+       ],
+     "styles": [
+       "neutral"
+       ],
+     "models": [
+       "sona_speech_1"
+       ],
+     "samples": [
+       {
+        "language": "ja",
+        "style": "neutral",
+        "model": "sona_speech_1",
+        "url": "https://d2hxfz33hpdvze.cloudfront.net/voice-library/resources/20250502_044710.wAA5PFQe7BHNQjrfMiNrRd.speech.wav"
+        },
+       {
+        "language": "ko",
+        "style": "neutral",
+        "model": "sona_speech_1",
+        "url": "https://d2hxfz33hpdvze.cloudfront.net/voice-library/resources/20250502_044844.tehBuHoUhZcWsCfUsr15As.speech.wav"
+        },
+        {
+         "language": "en",
+         "style": "neutral",
+         "model": "sona_speech_1",
+         "url": "https://d2hxfz33hpdvze.cloudfront.net/voice-library/resources/20250201_132654.rdMFfzDsaub9qXABwti65M.speech.wav"
+         }
+         ],
+         "thumbnail_image_url": "https://d2hxfz33hpdvze.cloudfront.net/voice-library/resources/7wmvg5vEBeooDEB9xnut6s.png"
+}
+```
+
+### 2.3 Filter by Conditions with `GET /v1/voices/search`
+
+If you want to find only voices that match specific language, style, or purpose, try the `GET /voices/search` endpoint.
+
+```http
+GET /v1/voices/search?language=ko&style=happy
+```
+
+**Supported Filters:**
+
+- `language`: Language code (ko, en, ja, etc.)
+- `style`: Emotional style (neutral, happy, etc.)
+- `name`, `description`, `gender`, `age`, `use_case` can also be searched
+
+**Sorting functionality is not supported**, and accurate condition specification is important.
+
+### **📌 Looking for Cloned Voices?**
+
+Searching with `name=My Voice` will show all cloned voices created in your current account.
+
+```http
+GET /v1/voices/search?name=My Voice
+```
+
+A response example for the above search is as follows:
+
+```json
+{
+    "items": [
+        {
+            "voice_id": "opSGuRvHBe7EfZ4LQga1hE",
+            "name": "My Voice 1",
+            "description": "",
+            "age": "",
+            "gender": "",
+            "use_case": "",
+            "language": [
+                "ja"
+            ],
+            "styles": [
+                "jealous"
+            ],
+            "models": [
+                "sona_speech_1"
+            ],
+            "samples": [
+                {
+                    "language": "ja",
+                    "style": "jealous",
+                    "model": "sona_speech_1",
+                    "url": "https://d2hxfz33hpdvze.cloudfront.net/voice-library/resources/20250514_160801.bDwEhmuq8JALRMP3nSHzUD.speech.wav"
+                }
+            ],
+            "thumbnail_image_url": ""
+        },
+        {
+            "voice_id": "hZGrJcUTNSNwfZDzasAVUh",
+            "name": "My Voice 2",
+            "description": "",
+            "age": "",
+            "gender": "",
+            "use_case": "",
+            "language": [
+                "en"
+            ],
+            "styles": [
+                "active"
+            ],
+            "models": [
+                "sona_speech_1"
+            ],
+            "samples": [
+                {
+                    "language": "en",
+                    "style": "active",
+                    "model": "sona_speech_1",
+                    "url": "https://d2hxfz33hpdvze.cloudfront.net/voice-library/resources/20250514_161008.ekky3mQgtgVLWLa54ispy5.speech.wav"
+                }
+            ],
+            "thumbnail_image_url": ""
+        }
+    ],
+    "total": 2,
+    "next_page_token": null
+}
+```
+
+## 3. Check Sample Audio and Style Information
+
+The `samples` field in the voice object contains sample audio based on language, style, and model combinations.
+
+```json
+{
+  "language": "ko",
+  "style": "neutral",
+  "model": "sona_speech_1",
+  "url": "https://.../speech.wav"
+}
+```
+
+Accessing this URL allows you to download actual speech samples. Since different characters support different style/language/model combinations, please check before use.
+
+## 4. Next Steps
+
+Once you've found a voice ID, refer to the [TTS Call Guide](/user-guide/text-to-speech) to continue with text input, parameter settings, and audio output format specification.
