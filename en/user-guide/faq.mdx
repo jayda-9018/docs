@@ -1,1 +1,118 @@
+---
+title: "Frequently Asked Questions"
+description: "We've compiled frequently asked questions and their answers during API usage."
+---
+We've organized the most frequently asked questions by topic, from those first using the API to users who have integrated cloned voices.
 
+## 1. Getting Started with API
+<Accordion title="Where can I get an API Key?">
+  You can get it immediately by signing up for the service in the [console](https://console.supertoneapi.com). You can use up to 3 Keys per account, and revocation and reissuance are possible in case of leakage.
+</Accordion>
+
+<Accordion title="How do I integrate the API?">
+  When making HTTP requests, put the issued Key in the `x-sup-api-key` header. For detailed integration methods, please refer to [Quick Start](/en/user-guide/quickstart).
+</Accordion>
+
+<Accordion title="Do I need to use a different account from Play?">
+  No. Play and API operate on the same account basis.
+</Accordion>
+
+## 2. Voice & Call Related
+<Accordion title="Where can I check available voice IDs?">
+  Voice IDs can be checked through the following three methods:
+  1. Copy from the voice library in Supertone Play
+  2. Call GET /v1/voices endpoint for complete inquiry
+  3. Call GET /v1/voices/search endpoint for conditional search
+  For more details, please check the [Voice Selection Guide](/en/user-guide/voice-selection).
+</Accordion>
+
+<Accordion title="Can I use cloned voices in the API?">
+  Yes. Cloned voices created in Play can also be called in the API with the same account. Cloned voice creation is only possible in Play.
+</Accordion>
+
+<Accordion title="How can I find the ID of a cloned voice?">
+  By searching with `GET /v1/voices/search?name=My Voice`, you can filter and check only cloned voices created within your account.
+  For more details, please check the [Voice Selection Guide](/en/user-guide/voice-selection).
+</Accordion>
+
+<Accordion title="Can I make calls just knowing the voice ID?">
+  No. In addition to `voice_id`, the `language`, `style`, and `model` combination must match exactly for voice to be generated normally.
+</Accordion>
+
+<Accordion title="What combinations are possible for each voice?">
+  Through the `samples` field, you can check supported language/style/model combinations and sample audio for each voice.
+  For more details, please check the [Voice Selection Guide](/en/user-guide/voice-selection).
+</Accordion>
+
+<Accordion title="Is the style parameter required?">
+  No. Style is optional, and the system's default style is automatically applied if not provided.
+</Accordion>
+
+<Accordion title="Can I adjust voice speed or pitch?">
+  You can adjust `pitch_shift`, `pitch_variance`, and `speed` through `voice_settings`.
+</Accordion>
+
+<Accordion title="What is the Predict Duration API for?">
+  It's a feature that predicts the speech length of input text. **Credits are not deducted**.
+</Accordion>
+
+## 3. Credits & Pricing
+<Accordion title="What is the API pricing plan?">
+  It uses the same credit system as Play. Please check available plans on the [Play subscription page](https://play.supertone.ai/subscription).
+</Accordion>
+
+<Accordion title="How can I check my credit balance?">
+  You can check through the following two methods:
+  - Call `GET /v1/credits` API
+  - Check console or Play dashboard
+</Accordion>
+
+<Accordion title="Are credits only deducted from the API?">
+  No. Play and API share the same credits.
+</Accordion>
+
+<Accordion title="Can I use voices created in Play in the API?">
+  Yes. Cloned voices created within the same account can be called in the API without additional settings.
+</Accordion>
+
+## 4. Errors & Troubleshooting
+<Accordion title="What are the most common errors when making calls?">
+  - 401: API Key error
+  - 402: Insufficient credits
+  - 403: Unauthorized voice call
+  - 400: Parameter error, text overflow, etc.
+  - 429: Call limit exceeded
+  For more details, please check the [Error Handling](/en/user-guide/handling-errors) guide.
+</Accordion>
+
+<Accordion title="Where can I check error codes?">
+  You can check them in the [Error Handling](/en/user-guide/handling-errors) guide.
+</Accordion>
+
+<Accordion title="My calls keep failing.">
+  Please refer to the [Error Handling](/en/user-guide/handling-errors) guide and check the following:
+  - Verify that x-sup-api-key is included in headers
+  - Check if Content-Type: application/json is missing
+  - Verify that voice_id has been replaced with actual value
+  If problems persist, please contact through the [customer support](https://support.supertone.ai/hc/en-us/categories/10267196754959-Play?_gl=1*wccieo*_gcl_au*NDgxOTUwMjcwLjE3NDc4MjQ4NDE.) page.
+</Accordion>
+
+<Accordion title="What are the call frequency limits?">
+  We recommend 20 calls or fewer per minute by default. For higher traffic needs, separate inquiry is required.
+  > 🏢 [Enterprise Inquiry](https://docs.google.com/forms/d/1YexQpjpK0ZEou12blTytkZLqvrV-Uv95GbhxoOQ54R8/edit)
+  > 
+</Accordion>
+
+## 5. Operational Policy & Support
+<Accordion title="Can anyone use the API?">
+  Yes. You can use it immediately after signing up for the console and charging credits, with no separate approval required.
+</Accordion>
+
+<Accordion title="Is there an enterprise plan?">
+  Yes. For team-level usage, user account separation, call limit expansion, and other special conditions, please contact through support.
+  > 🏢 [Enterprise Inquiry](https://docs.google.com/forms/d/1YexQpjpK0ZEou12blTytkZLqvrV-Uv95GbhxoOQ54R8/edit)
+</Accordion>
+
+<Accordion title="Where do I contact if problems aren't resolved?">
+  Please leave a 1:1 inquiry through the [customer support](https://support.supertone.ai/hc/en-us/categories/10267196754959-Play?_gl=1*9ehgt*_gcl_au*NDgxOTUwMjcwLjE3NDc4MjQ4NDE.) page, and we'll respond quickly.
+</Accordion>
