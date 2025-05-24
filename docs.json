@@ -62,13 +62,15 @@
               {
                 "group": "Text to Speech",
                 "pages": [
-                  "ko/api-reference/endpoints/text-to-speech"
+                  "ko/api-reference/endpoints/text-to-speech",
+                  "ko/api-reference/endpoints/predict-duration"
                 ]
               },
               {
                 "group": "Usage",
                 "pages": [
-                  "ko/api-reference/endpoints/get-voice-usage"
+                  "ko/api-reference/endpoints/get-voice-usage",
+                  "ko/api-reference/endpoints/get-credit-balance"
                 ]
               }
             ]
@@ -175,13 +177,15 @@
               {
                 "group": "Text to Speech",
                 "pages": [
-                  "ja/api-reference/endpoints/text-to-speech"
+                  "ja/api-reference/endpoints/text-to-speech",
+                  "ja/api-reference/endpoints/predict-duration"
                 ]
               },
               {
                 "group": "Usage",
                 "pages": [
-                  "ja/api-reference/endpoints/get-voice-usage"
+                  "ja/api-reference/endpoints/get-voice-usage",
+                  "ja/api-reference/endpoints/get-credit-balance"
                 ]
               }
             ]
@@ -288,13 +292,15 @@
               {
                 "group": "Text to Speech",
                 "pages": [
-                  "en/api-reference/endpoints/text-to-speech"
+                  "en/api-reference/endpoints/text-to-speech",
+                  "en/api-reference/endpoints/predict-duration"
                 ]
               },
               {
                 "group": "Usage",
                 "pages": [
-                  "en/api-reference/endpoints/get-voice-usage"
+                  "en/api-reference/endpoints/get-voice-usage",
+                  "en/api-reference/endpoints/get-credit-balance"
                 ]
               }
             ]
