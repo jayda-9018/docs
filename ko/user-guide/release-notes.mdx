@@ -1,1 +1,97 @@
+---
+title: "릴리즈 노트"
+description: "수퍼톤 API의 최신 업데이트 및 변경 사항을 확인하세요."
+---
 
+<Update label="2025-05-28" description="v.1.1.0">
+  ## Supertone API 그랜드 오픈
+  
+  Supertone API가 클로즈드 베타를 마치고 정식으로 공개되었습니다.
+  이번 릴리즈에서는 서비스 구조와 API 사용성을 전면 개편하였으며, Play와의 통합 및 보이스 시스템의 일원화를 통해 보다 직관적이고 확장성 높은 음성 생성 플랫폼으로 발전했습니다.
+
+  ### 주요 변경 사항
+  1. **Voice ID 구조 개편**
+      - 기존 `{character-language-style}` 조합에서 → **캐릭터 단위의 voice_id**로 통일
+      - `language`, `style` 파라미터가 본문 입력으로 분리되어 유연한 호출 가능
+  2. **신규 모델 도입**
+      - 기존 `pro`, `turbo` 대신 → **`sona_speech_1`** 단일 모델로 통합
+      - 발화 품질 개선 및 텍스트 길이 제한 상향 (200자 → 300자)
+  3. **클론드 보이스 API 호출 지원**
+      - Play에서 생성한 클론드 보이스를 API에서도 호출 가능
+      - 동일 계정 내 자동 연동, 권한 기반 보안 유지
+  5. **Play와 요금제 통합**
+      - API 사용 시 Play의 크레딧 시스템을 그대로 적용
+      - 별도 요금제 없이 크레딧 공유 및 통합 결제 운영
+  6. **보이스 검색 기능 강화**
+      - `GET /voices`, `GET /voices/search` API로 필터링/탐색 가능
+      - 보이스별 지원 언어/스타일/샘플 제공
+  7. **Predict Duration API 제공**
+      - 음성 생성 전 텍스트 길이 예측 가능 (크레딧 차감 없음)
+  8. **신규 사용자 가이드/문서 제공**
+      - Quickstart, Voice Selection, Error Handling, FAQ 등 실전 중심 문서 완비
+      - Play ↔ API 연동 흐름을 고려한 전체 문서 리뉴얼
+
+  이 업데이트를 통해 Supertone API는 단순한 호출 기능을 넘어,  
+**서비스 전반을 유기적으로 연결하고 확장 가능한 음성 생성 플랫폼**으로 한 단계 도약했습니다.
+</Update>
+
+<Update label="2025-01-23" description="v1.0.1">
+  ## Supertone API 검색 기능 업데이트
+
+  안녕하세요, Supertone API를 이용해 주셔서 감사합니다. 원하는 음성을 더 쉽게 찾을 수 있는 새로운 검색 기능이 추가되어 안내드립니다.
+
+  ### 새로운 기능
+
+  1. **다양한 필터와 키워드로 음성을 검색할 수 있는 새로운 엔드포인트 추가**
+
+  - 언어, 성별, 연령, 용도별 음성 필터링
+  - 음성 이름과 설명에서 키워드 검색
+  - 다양한 기준으로 결과 정렬
+  - 효율적인 페이지 단위 검색 결과 조회
+
+  ### API 엔드포인트
+
+  1. [Search Voices API](/ko/api-reference/endpoints/search-voices): 특정 조건에 맞는 음성 검색 및 필터링
+
+  - 검색 매개변수와 예제 요청에 대해 자세히 알아보시려면 API 레퍼런스 페이지를 방문해 주세요.
+  - Search Voices API 사용에 대한 자세한 내용은 업데이트된 문서를 참고해 주시기 바랍니다.
+</Update>
+
+<Update label="2024-12-23" description="v1.0.0">
+  <Frame>
+    ![](/images/supertone-api-landing-page.png)
+  </Frame>
+  ## Supertone API 클로즈드 베타 출시
+
+  안녕하세요, **Supertone API**를 찾아주셔서 감사합니다.
+  수퍼톤의 음성 AI 기술을 이용할 수 있는 API 서비스의 **Closed Beta** 버전이 출시되어 안내드립니다.
+
+  ### 주요 기능
+
+  1. **Text-to-speech** 음성 합성 서비스
+  2. 음성 목록 조회 및 사용량 확인 API 제공
+
+  ### API 엔드포인트
+
+  1. [Get Voices API](/ko/api-reference/endpoints/get-voices): 사용 가능한 음성 목록 조회
+  2. [Text-to-speech API](/ko/api-reference/endpoints/text-to-voice): 텍스트를 음성으로 변환
+  3. [Get Voice Usage API](/ko/api-reference/endpoints/get-voice-usage): API 사용량 확인
+
+  ### 시작하기
+
+  1. https://console.supertoneapi.com 에서 회원가입
+  2. Closed Beta 참여 신청 및 승인
+  3. 콘솔에서 API Key 발급
+  4. API 연동 및 사용
+
+  ### 요금 안내
+
+  **\$0.1** / 생성된 오디오 1분
+
+  ### 콘솔 기능
+
+  1. API Key 발급 및 관리
+  2. 분 단위 API 사용량 모니터링
+
+  더 자세한 내용은 [사용자 가이드](/ko/user-guide/welcome)를 참고해 주세요.
+</Update>
