@@ -1,1 +1,37 @@
+---
+title: "Supertone API 소개"
+description: "Supertone API의 전체 기능과 구조를 한눈에 소개합니다."
+---
 
+Supertone API는 감정이 살아있는 음성을 텍스트 기반으로 합성할 수 있는 RESTful API입니다. Play와 연동된 보이스 라이브러리 기반으로, 텍스트 입력만으로 자연스러운 발화를 생성할 수 있으며, 보이스 탐색부터 사용량 관리까지 다양한 기능을 제공합니다.
+
+## 제공 기능
+
+<CardGroup cols={1}>
+  <Card title="Text-to-Speech" icon="comment">
+    텍스트를 음성으로 변환합니다. 사용자는 보이스 ID와 함께 언어, 스타일, 모델, 세부 음성 설정(pitch, speed 등)을 전달할 수 있습니다.
+  </Card>
+  <Card title="보이스 탐색" icon="magnifying-glass">
+    현재 계정에서 사용할 수 있는 보이스를 전체 조회하거나, 언어, 스타일, 이름 등을 조건으로 검색할 수 있습니다.
+  </Card>
+  <Card title="발화 길이 예측" icon="crystal-ball">
+    음성을 생성하기 전, 입력한 텍스트가 몇 초 분량의 오디오로 생성될지 예측할 수 있습니다.
+    이 기능은 크레딧을 차감하지 않고 호출 가능합니다.
+  </Card>
+  <Card title="크레딧 및 사용량 확인" icon="credit-card">
+    계정의 남은 크레딧 잔액, API를 통해 사용한 음성 시간 등을 확인할 수 있는 엔드포인트를 제공합니다.
+  </Card>
+</CardGroup>
+
+## 문서 구조
+
+- [인증](/ko/api-reference/authentication): API를 사용하기 위한 인증 방법을 안내합니다.
+- 엔드포인트 레퍼런스: 각 기능별 호출 방법과 응답 구조를 확인할 수 있습니다.
+  - [GET /v1/voices](/ko/api-reference/endpoints/get-voices)
+  - [GET /v1/voices/search](/ko/api-reference/endpoints/search-voices)
+  - [POST /v1/text-to-speech](/ko/api-reference/endpoints/text-to-speech)
+  - [POST /v1/predict-duration](/ko/api-reference/endpoints/predit-duration)
+  - [GET /v1/voice-usage](/ko/api-reference/endpoints/get-voice-usage)
+  - [GET /v1/credits](/ko/api-reference/endpoints/get-credit-balance)
+
+정식 출시 이후 Supertone API는 단순한 호출 기능을 넘어, Play, 콘솔, 보이스 생성 기능을 유기적으로 연결한 **확장 가능한 음성 합성 플랫폼**으로 운영됩니다.
