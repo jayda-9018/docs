@@ -1,1 +1,102 @@
+---
+title: "TTS Call Guide"
+description: "A step-by-step guide to parameter structure and usage for converting text to speech."
+---
+To convert text to speech through Supertone API, you need to pass information such as text, language, and style along with a specific voice ID to the API.
+This document provides step-by-step guidance on the complete call structure of the Text-to-Speech function, parameter configuration methods, response format, and voice adjustment options.
 
+## 1. Call Endpoint and Basic Structure
+```http
+POST /v1/text-to-speech/{voice_id}
+```
+
+### Required Headers
+```http
+x-sup-api-key: [YOUR_API_KEY]
+Content-Type: application/json
+```
+
+### Path Parameters
+- `voice_id`: Unique ID of the voice to use
+
+### Query Parameters
+- `output_format` (optional): Audio format to generate. Choose between `wav` (default) and `mp3`
+
+## 2. Request Body
+Requests are sent in JSON format and can include the following fields:
+
+| Field               | Required | Description                                                  |
+| :--------------- | :---- | :-------------------------------------------------- |
+| `text`           | ✅     | Text to convert to speech (max 300 characters)                              |
+| `language`       | ✅     | Language of the text. Choose within languages supported by the voice (`ko`, `en`, `ja`)     |
+| `style`          | ❌     | Emotional style to apply (`neutral`, `happy`, etc.). Uses default style if not provided |
+| `model`          | ❌     | Voice model to use (`sona_speech_1`). Automatically applied if omitted             |
+| `voice_settings` | ❌     | Advanced options to adjust voice pitch, intonation, and speed (see below)                 |
+
+## 3. Complete Request Example
+```http
+POST /v1/text-to-speech/91992bbd4758bdcf9c9b01?output_format=mp3
+x-sup-api-key: [YOUR_API_KEY]
+Content-Type: application/json
+
+{
+  "text": "안녕하세요, 수퍼톤 API입니다.",
+  "language": "ko",
+  "style": "neutral",
+  "model": "sona_speech_1",
+  "voice_settings": {
+    "pitch_shift": 0,
+    "pitch_variance": 1,
+    "speed": 1
+  }
+}
+```
+
+## 4. `voice_settings` Options
+`voice_settings` is an advanced option you can use when you want to fine-tune the speech feel of the generated voice.
+
+| Parameter             | Description                                                               | Allowed Range      | Default |
+| :--------------- | :--------------------------------------------------------------- | :--------- | :-- |
+| `pitch_shift`    | Adjusts the pitch level.<br />0 is the original voice pitch, with ±12 steps possible. 1 step is a semitone. | -12 ~ \+12 | 0   |
+| `pitch_variance` | Controls the degree of intonation variation during speech.<br />Smaller values create flatter intonation, larger values create richer intonation.      | 0.1 ~ 2    | 1   |
+| `speed`          | Controls speech speed.<br />Values less than 1 make it slower, values greater than 1 make it faster.                       | 0.5 ~ 2    | 1   |
+
+> ⚠️ Values outside the range will apply default values.\
+> Extreme adjustment values may degrade voice quality.
+
+## 5. Response
+On success, responds with an audio stream (`audio/wav` or `audio/mpeg`).\
+Audio length can be checked through headers.
+
+```http
+X-Audio-Length: 3.42
+```
+
+The above example indicates that 3.42 seconds of speech was generated.
+
+## 6. Text Input Considerations
+- Text can be input up to **300 characters maximum**.
+- Too short sentences may result in unnatural speech.
+- **Only Korean, English, and Japanese are supported**; other languages may produce unexpected results.
+- Emojis and special symbols may not be read or may be ignored.
+
+## 7. Model Selection
+Currently, only one model `sona_speech_1` is supported.\
+This parameter is optional, and the default model is automatically applied if not provided.
+
+## 8. Check Speech Duration First with Predict Duration API
+Even without generating speech, you can predict how many seconds of speech the input text will produce.
+
+```http
+POST /v1/predict-duration/{voice_id}
+```
+
+- Request method is the same as TTS
+- Response example:
+```json
+{
+  "duration": 2.87
+}
+```
+
+**This API does not deduct credits.** It can be useful for usage prediction or implementing preview UI features.
