@@ -1,1 +1,34 @@
+---
+title: "Supertone API Introduction"
+description: "An overview of the complete features and structure of Supertone API."
+---
+Supertone API is a RESTful API that can synthesize emotionally expressive voices from text. Based on a voice library integrated with Play, it can generate natural speech with just text input, providing various features from voice exploration to usage management.
 
+## Features Provided
+<CardGroup cols={1}>
+  <Card title="Text-to-Speech" icon="comment">
+    Converts text to speech. Users can pass language, style, model, and detailed voice settings (pitch, speed, etc.) along with voice ID.
+  </Card>
+  <Card title="Voice Exploration" icon="magnifying-glass">
+    You can retrieve all voices available in your current account or search by conditions such as language, style, and name.
+  </Card>
+  <Card title="Speech Duration Prediction" icon="crystal-ball">
+    Before generating speech, you can predict how many seconds of audio the input text will generate.
+    This feature can be called without deducting credits.
+  </Card>
+  <Card title="Credits and Usage Check" icon="credit-card">
+    Provides endpoints to check your account's remaining credit balance and voice time used through the API.
+  </Card>
+</CardGroup>
+
+## Documentation Structure
+- [Authentication](/en/api-reference/authentication): Guides authentication methods for using the API.
+- Endpoint Reference: You can check calling methods and response structures for each feature.
+  - [GET /v1/voices](/en/api-reference/endpoints/get-voices)
+  - [GET /v1/voices/search](/en/api-reference/endpoints/search-voices)
+  - [POST /v1/text-to-speech](/en/api-reference/endpoints/text-to-speech)
+  - [POST /v1/predict-duration](/en/api-reference/endpoints/predit-duration)
+  - [GET /v1/voice-usage](/en/api-reference/endpoints/get-voice-usage)
+  - [GET /v1/credits](/en/api-reference/endpoints/get-credit-balance)
+
+After its official launch, Supertone API operates as **a scalable voice synthesis platform** that organically connects Play, console, and voice generation features beyond simple calling functionality.
