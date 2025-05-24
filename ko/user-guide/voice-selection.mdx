@@ -1,1 +1,204 @@
-adf
+---
+title: "보이스 선택 가이드"
+description: "사용할 보이스 ID를 찾는 방법과 API/Play에서 보이스 정보를 조회하는 방법을 안내합니다."
+---
+
+음성 합성에서 가장 중요한 요소는 바로 어떤 목소리로 읽을지를 결정하는 **보이스 ID**입니다. 이 문서에서는 원하는 보이스를 찾는 방법과, API 호출에 필요한 보이스 정보를 어떻게 확인할 수 있는지 안내합니다.
+
+## 1. 보이스 ID란 무엇인가요?
+
+`voice_id`는 하나의 고유한 캐릭터를 식별하는 값입니다.
+
+음성을 합성할 때는 이 보이스 ID에 더해, **언어(language)**, **스타일(style)**, **모델(model)** 정보를 함께 넘겨야 정확한 음성이 생성됩니다.
+
+## 2. 보이스 ID를 찾는 세 가지 방법
+
+### 2.1 Supertone Play에서 복사하기
+
+가장 빠르고 직관적인 방법은 Supertone Play의 보이스 라이브러리에서 `voice_id`를 복사하는 것입니다.
+
+- 각 보이스 항목 내의 **Copy voice ID** 버튼을 클릭하면
+- 해당 보이스의 ID가 클립보드에 복사됩니다.
+- 클론 보이스도 별도의 탭에서 확인할 수 있습니다.
+
+[Supertone Play 바로가기](https://play.supertone.ai)
+
+**기본 보이스 예시:**
+
+<Frame>
+  ![](/images/supertone-play-copy-voice-id-preset.png)
+</Frame>
+
+**클론드 보이스 예시:**
+
+<Frame>
+  ![](/images/supertone-play-copy-voice-id-cloned.png)
+</Frame>
+
+### 2.2 `GET /voices`로 전체 보이스 목록 받기
+
+API를 통해 **조건 없이 사용 가능한 전체 보이스 목록**을 확인하려면 `GET /voices` 엔드포인트를 사용하세요.
+
+```http
+GET /voices
+```
+
+응답에는 다음과 같은 정보가 포함됩니다:
+
+- `voice_id`: 호출에 사용될 ID
+- `name`: 캐릭터 이름 (예: Agatha, Adam 등)
+- `language`: 지원하는 언어 목록
+- `styles`: 선택 가능한 스타일 목록
+- `models`: 사용 가능한 음성 모델
+- `samples`: 언어/스타일/모델별 샘플 음성
+- `thumbnail_image_url`: 보이스 이미지
+
+응답 예시:
+
+```json
+{
+    "voice_id": "91992bbd4758bdcf9c9b01",
+    "name": "Adam",
+    "description": "",
+    "age": "young-adult",
+    "gender": "male",
+    "use_case": "meme",
+    "language": [
+       "ko",
+       "en",
+       "ja"
+       ],
+     "styles": [
+       "neutral"
+       ],
+     "models": [
+       "sona_speech_1"
+       ],
+     "samples": [
+       {
+        "language": "ja",
+        "style": "neutral",
+        "model": "sona_speech_1",
+        "url": "https://d2hxfz33hpdvze.cloudfront.net/voice-library/resources/20250502_044710.wAA5PFQe7BHNQjrfMiNrRd.speech.wav"
+        },
+       {
+        "language": "ko",
+        "style": "neutral",
+        "model": "sona_speech_1",
+        "url": "https://d2hxfz33hpdvze.cloudfront.net/voice-library/resources/20250502_044844.tehBuHoUhZcWsCfUsr15As.speech.wav"
+        },
+        {
+         "language": "en",
+         "style": "neutral",
+         "model": "sona_speech_1",
+         "url": "https://d2hxfz33hpdvze.cloudfront.net/voice-library/resources/20250201_132654.rdMFfzDsaub9qXABwti65M.speech.wav"
+         }
+         ],
+         "thumbnail_image_url": "https://d2hxfz33hpdvze.cloudfront.net/voice-library/resources/7wmvg5vEBeooDEB9xnut6s.png"
+        }
+```
+
+### 2.3 `GET /voices/search`로 조건별 필터링
+
+특정 언어나 스타일, 용도에 맞는 보이스만 찾고 싶다면`GET /voices/search` 엔드포인트를 사용해보세요.
+
+```http
+GET /voices/search?language=ko&style=happy
+```
+
+**지원 필터:**
+
+- `language`: 언어 코드 (ko, en, ja 등)
+- `style`: 감정 스타일 (neutral, happy 등)
+- `name`, `description`, `gender`, `age`, `use_case` 등도 검색 가능
+
+**정렬 기능은 지원되지 않으며**, 정확한 조건 지정이 중요합니다.
+
+**클론드 보이스를 찾고 싶다면?**\
+→ `name=My Voice`로 검색하면 현재 계정에서 생성한 클론드 보이스를 모두 확인할 수 있습니다.
+
+```http
+GET /voices/search?name=My Voice
+```
+
+위 검색에 따른 응답 예시는 아래와 같습니다.
+
+```json
+{
+    "items": [
+        {
+            "voice_id": "opSGuRvHBe7EfZ4LQga1hE",
+            "name": "My Voice 1",
+            "description": "",
+            "age": "",
+            "gender": "",
+            "use_case": "",
+            "language": [
+                "ja"
+            ],
+            "styles": [
+                "jealous"
+            ],
+            "models": [
+                "sona_speech_1"
+            ],
+            "samples": [
+                {
+                    "language": "ja",
+                    "style": "jealous",
+                    "model": "sona_speech_1",
+                    "url": "https://d2hxfz33hpdvze.cloudfront.net/voice-library/resources/20250514_160801.bDwEhmuq8JALRMP3nSHzUD.speech.wav"
+                }
+            ],
+            "thumbnail_image_url": ""
+        },
+        {
+            "voice_id": "hZGrJcUTNSNwfZDzasAVUh",
+            "name": "My Voice 2",
+            "description": "",
+            "age": "",
+            "gender": "",
+            "use_case": "",
+            "language": [
+                "en"
+            ],
+            "styles": [
+                "active"
+            ],
+            "models": [
+                "sona_speech_1"
+            ],
+            "samples": [
+                {
+                    "language": "en",
+                    "style": "active",
+                    "model": "sona_speech_1",
+                    "url": "https://d2hxfz33hpdvze.cloudfront.net/voice-library/resources/20250514_161008.ekky3mQgtgVLWLa54ispy5.speech.wav"
+                }
+            ],
+            "thumbnail_image_url": ""
+        }
+    ],
+    "total": 2,
+    "next_page_token": null
+}
+```
+
+## 3. 샘플 오디오와 스타일 정보 확인하기
+
+보이스 오브젝트의 `samples` 필드에는 언어(language), 스타일(style), 모델(model) 조합에 따른 샘플 오디오가 포함되어 있습니다.
+
+```json
+{
+  "language": "ko",
+  "style": "neutral",
+  "model": "sona_speech_1",
+  "url": "https://.../speech.wav"
+}
+```
+
+이 URL에 접근하면 실제 발화 샘플을 다운로드할 수 있습니다. 캐릭터에 따라 지원하는 스타일/언어/모델 조합이 다르므로, 사용 전 꼭 확인해 주세요.
+
+## 4. 다음 단계
+
+보이스 ID를 찾았다면, 이제 [TTS 호출 가이드](/user-guide/text-to-speech)를 참고하여 텍스트 입력, 파라미터 설정, 오디오 출력 형식을 지정해 호출을 이어가보세요.
