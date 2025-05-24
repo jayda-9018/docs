@@ -1,57 +1,14 @@
 ---
 title: "Get Voice Usage"
-description: "An API that allows you to check how much each voice has been used by period, useful for reviewing voice generation history."
-openapi: "/openapi.json GET /sandbox/voice-usage"
+description: "An API that allows you to check which voices were used and how much by period, useful for checking voice generation history."
+openapi: "/openapi.json GET"
 ---
 
-This API retrieves the **TTS API usage history** during a specified period.\
-You can identify which voices were used and for how many minutes, including clone voices.
+<Warning>
+  The document you are currently viewing is for `/sandbox/voice-usage`.\
+  The same functionality has been officially deployed at the `/v1/voice-usage` path,\
+  and for new integrations, you must use `/v1/voice-usage`.\
+  If you were previously integrated and using the sandbox, please update the url to `/v1/..` by June 6th.
 
-### Request Parameters
-| Parameter        | Required | Description                    |
-| :-------------- | :-- | :------------------------ |
-| `start_date`    | ✅  | Start date for inquiry (Format: `YYYY-MM-DD`) |
-| `end_date`      | ✅  | End date for inquiry (Format: `YYYY-MM-DD`) |
-| `x-sup-api-key` | ⭕  | API Key for authentication (included in Header)  |
-
-### Example Request
-```http
-GET /sandbox/voice-usage?start_date=2025-05-19&end_date=2025-05-28
-x-sup-api-key: [YOUR_API_KEY]
-```
-
-### Response Example
-```json
-{
-  "usages": [
-    {
-      "date": "2025-05-22",
-      "voice_id": "e5f6fb1a53d0add87afb4f",
-      "name": "Agatha",
-      "style": "neutral",
-      "language": "en",
-      "model": "sona_speech_1",
-      "total_minutes_used": 12.43251349
-    },
-    {
-      "date": "2025-05-24",
-      "voice_id": "opSGuRvHBe7EfZ4LQga1hE",
-      "name": "My Voice 1",
-      "style": "sad",
-      "language": "ko",
-      "model": "sona_speech_1",
-      "total_minutes_used": 3.24566213
-    }
-  ]
-}
-```
-
-### Usage Examples
-- **Summing up TTS usage** by specific dates
-- Identifying which characters/styles are used more frequently
-- Can be used for **monthly budget management or internal reporting logs**
-
-### Notes
-- The maximum queryable period is 30 days.
-- If there are no usage records during the specified period, an empty array will be returned.
-- `total_minutes_used` is based on the actual length of the generated voice.
+  👉 View official documentation: [GET /v1/voice-usage](/en/api-reference/endpoints/get-voice-usage)
+</Warning>

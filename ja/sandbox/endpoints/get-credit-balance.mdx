@@ -1,27 +1,14 @@
 ---
 title: "Get Credit Balance"
-description: "現在のアカウントで利用可能なクレジット残高を照会するシンプルなAPIです。"
-openapi: "/openapi.json GET /sandbox/credits"
+description: "現在のアカウントの使用可能なクレジット残高を照会するシンプルなAPIです。"
+openapi: "/openapi.json GET"
 ---
 
-このAPIは現在のアカウントの**利用可能なクレジット残高**を照会します。\
-Supertone PlayとAPIは同じクレジットシステムを使用しているため、PlayでチャージしたクレジットはAPIにもそのまま適用されます。
+<Warning>
+  現在ご覧になっている文書は`/sandbox/credits`に関する文書です。\
+  これと同じ機能は`/v1/credits`パスで正式デプロイされており、\
+  新しい連携時には必ず`/v1/credits`を使用してください。\
+  以前にサンドボックスを連携して使用していた場合は、6月6日までにurlを`/v1/..`にアップデートしてください。
 
-### リクエスト方法
-```http
-GET /sandbox/credits
-x-sup-api-key: [YOUR_API_KEY]
-```
-
-### レスポンス例
-```json
-{
-  "balance": 146
-}
-```
-→ 現在146クレジットが利用可能であることを意味します。
-
-### 参考事項
-- クレジットは**分単位**で課金されます。
-- クレジットは**PlayとAPIで共有**されます。
-- 新規登録時には基本体験クレジットが提供される場合があります。
+  👉 正式文書を見る：[GET /v1/credits](/ja/api-reference/endpoints/get-credit-balance)
+</Warning>

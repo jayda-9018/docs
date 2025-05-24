@@ -1,27 +1,14 @@
 ---
 title: "Get Credit Balance"
-description: "A simple API for checking the available credit balance in the current account."
-openapi: "/openapi.json GET /sandbox/credits"
+description: "A simple API that queries the available credit balance of the current account."
+openapi: "/openapi.json GET"
 ---
 
-This API checks the **available credit balance** of the current account.\
-Supertone Play and API use the same credit system, so credits charged in Play are applied to the API as well.
+<Warning>
+  The document you are currently viewing is for `/sandbox/credits`.\
+  The same functionality has been officially deployed at the `/v1/credits` path,\
+  and for new integrations, you must use `/v1/credits`.\
+  If you were previously integrated and using the sandbox, please update the url to `/v1/..` by June 6th.
 
-### Request Method
-```http
-GET /sandbox/credits
-x-sup-api-key: [YOUR_API_KEY]
-```
-
-### Response Example
-```json
-{
-  "balance": 146
-}
-```
-→ This means that 146 credits are currently available for use.
-
-### Notes
-- Credits are charged on a **per-minute** basis.
-- Credits are **shared between Play and API**.
-- New sign-ups may receive default trial credits.
+  👉 View official documentation: [GET /v1/credits](/en/api-reference/endpoints/get-credit-balance)
+</Warning>

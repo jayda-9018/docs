@@ -1,48 +1,14 @@
 ---
 title: "Predict Duration"
-description: "An API that returns only the estimated duration without generating voice, useful for billing prediction or text length adjustment."
-openapi: "/openapi.json POST /sandbox/predict-duration/{voice_id}"
+description: "An API that returns only the expected length without generating speech, useful for billing prediction or text length adjustment."
+openapi: "/openapi.json POST"
 ---
 
-This API **returns only the estimated voice duration (in seconds)** based on the input text\
-**without actually generating the audio**.
-It's useful for **understanding expected credit consumption or adjusting text length** before making TTS calls.
+<Warning>
+  The document you are currently viewing is for `/sandbox/predict-duration/{voice_id}`.\
+  The same functionality has been officially deployed at the `/v1/predict-duration/{voice_id}` path,\
+  and for new integrations, you must use `/v1/predict-duration/{voice_id}`.\
+  If you were previously integrated and using the sandbox, please update the url to `/v1/..` by June 6th.
 
-### Usage Method
-- The calling method and Request Body are almost identical to the `text-to-speech` API.
-- However, it returns only the `duration` value rather than audio.
-- **No credits are consumed** when calling the Predict Duration API.
-
-### Request Body Parameters
-| Parameter        | Required | Description                                    |
-| :--------------- | :-- | :------------------------------------- |
-| `text`           | ✅  | Text to analyze. Maximum 300 characters |
-| `language`       | ✅  | Text language. One of `ko`, `en`, `ja` |
-| `style`          | ❌  | Emotional style. If not specified, default style is used |
-| `model`          | ❌  | Default is `sona_speech_1`. Currently only this model is available |
-| `voice_settings` | ❌  | Speech rate or pitch adjustment values. May affect the resulting duration |
-
-### Usage Example
-```http
-POST /sandbox/predict-duration/{voice_id}
-Content-Type: application/json
-x-sup-api-key: [YOUR_API_KEY]
-{
-  "text": "This is a long-form sentence for duration prediction.",
-  "language": "en",
-  "style": "neutral"
-}
-```
-
-### Response Example
-```json
-{
-  "duration": 3.57381983
-}
-```
-→ This means that generating this text would create audio approximately 3.57 seconds in length.
-
-### Usage Tips
-- **Credits are not actually deducted** (since no voice is being generated).
-- You can get results that are very similar to when you actually call the same text.
-- Adjusting `voice_settings.speed` will change the length, so it's better to test with a fixed speech rate.
+  👉 View official documentation: [POST /v1/predict-duration](/en/api-reference/endpoints/predict-duration)
+</Warning>

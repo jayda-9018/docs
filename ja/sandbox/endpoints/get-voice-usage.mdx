@@ -1,57 +1,14 @@
 ---
 title: "Get Voice Usage"
-description: "期間別にどのボイスをどれだけ使用したかを確認できるAPI、音声生成履歴の確認に役立ちます。"
-openapi: "/openapi.json GET /sandbox/voice-usage"
+description: "期間別にどのボイスをどれくらい使用したかを確認できるAPIで、音声生成履歴確認に有用です。"
+openapi: "/openapi.json GET"
 ---
 
-このAPIは指定した期間の**TTS API使用履歴**を照会します。\
-クローンボイスを含め、どのボイスを何分間使用したかを把握できます。
+<Warning>
+  現在ご覧になっている文書は`/sandbox/voice-usage`に関する文書です。\
+  これと同じ機能は`/v1/voice-usage`パスで正式デプロイされており、\
+  新しい連携時には必ず`/v1/voice-usage`を使用してください。\
+  以前にサンドボックスを連携して使用していた場合は、6月6日までにurlを`/v1/..`にアップデートしてください。
 
-### リクエストパラメータ
-| パラメータ        | 必須 | 説明                        |
-| :-------------- | :-- | :------------------------ |
-| `start_date`    | ✅  | 照会開始日 (形式: `YYYY-MM-DD`) |
-| `end_date`      | ✅  | 照会終了日 (形式: `YYYY-MM-DD`) |
-| `x-sup-api-key` | ⭕  | 認証用API Key (Headerに含める)  |
-
-### リクエスト例
-```http
-GET /sandbox/voice-usage?start_date=2025-05-19&end_date=2025-05-28
-x-sup-api-key: [YOUR_API_KEY]
-```
-
-### レスポンス例
-```json
-{
-  "usages": [
-    {
-      "date": "2025-05-22",
-      "voice_id": "e5f6fb1a53d0add87afb4f",
-      "name": "Agatha",
-      "style": "neutral",
-      "language": "en",
-      "model": "sona_speech_1",
-      "total_minutes_used": 12.43251349
-    },
-    {
-      "date": "2025-05-24",
-      "voice_id": "opSGuRvHBe7EfZ4LQga1hE",
-      "name": "My Voice 1",
-      "style": "sad",
-      "language": "ko",
-      "model": "sona_speech_1",
-      "total_minutes_used": 3.24566213
-    }
-  ]
-}
-```
-
-### 活用例
-- 特定の日付別の**TTS使用量の合計**
-- どのキャラクター/スタイルが多く使われたかの把握
-- **月別予算管理や内部報告用ログ**として活用可能
-
-### 注意事項
-- 照会可能な最大期間は30日です。
-- 該当期間中に使用記録がない場合は空の配列が返されます。
-- `total_minutes_used`は実際に生成された音声の長さに基づいています。
+  👉 正式文書を見る：[GET /v1/voice-usage](/ja/api-reference/endpoints/get-voice-usage)
+</Warning>
