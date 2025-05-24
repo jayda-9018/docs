@@ -2,13 +2,18 @@
 title: "What is Sandbox?"
 description: "A temporary test environment introduced due to Supertone API structure changes, allowing you to pre-check new calling methods."
 ---
+
 <Warning>
   ### The official version has been deployed as of now (after May 28, 2025).
+
   The current official API version (`/v1/...`) **was deployed as of May 28, 2025**, and for new integrations, please no longer use sandbox endpoints and integrate the `/v1` **version instead.**
+
   **If you are already integrated and using the sandbox:**\
   You just need to modify the URL from `/sandbox/...` → `/v1/...` before June 6, 2025.
+
   **If you have never integrated or used the sandbox:**\
   You can skip this document and refer only to the official version documentation.
+
   📄 Go to official documentation: [API Reference](/en/api-reference/introduction)
 </Warning>
 
@@ -19,28 +24,33 @@ To allow users to **reflect and test these changes without interruption**,\
 Supertone provides a **temporary sandbox environment from May 19 to June 6, 2025**.
 
 ### 🔧 What is Sandbox?
+
 Sandbox is a **temporary test environment where you can practice** the new calling methods of Supertone API (TTS models, voice ID, style parameters, etc.) **in advance**.\
 Users who have already applied the existing `v1` API to their live environment can also try migration to the new structure in advance through the sandbox.
 
 ### 🕒 Operation Period
+
 > **May 19, 2025 (Mon) – June 6, 2025 (Fri)**\
 > A temporary environment provided for approximately 3 weeks.
 
 ### 🧭 Why Sandbox is Needed
+
 - **Important structural changes** have occurred in the existing API calling methods due to the grand opening.
 - In particular, voice IDs in `{character-language-style}` format have been **simplified to character ID units**, and instead **style and language have been separated as parameters**.
 - Therefore, sandbox is needed for users who find it **difficult to modify existing API calling code immediately** or who need to **test transitions without service interruption**.
 
 ### ⚙️ Changed Structure Summary
-| Item     | Existing v1 API          | After Change (Sandbox and Official)                     |
-| :----- | :----------------- | :------------------------------------ |
-| Voice ID | `{serin-ko-happy}` | `{serin}` + `language`, `style` parameters |
-| Style Specification | Included in voice ID        | Separated as `style` parameter                      |
-| Model Name    | `"pro"`, `"turbo"` | `"sona_speech_1"`                     |
-| Text Length | Maximum 200 characters            | Maximum 300 characters                               |
-| Billing Method  | Post-payment ($0.1 per minute)     | Credit-based pricing (integrated with Play)                 |
+
+| Item                | Existing v1 API                 | After Change (Sandbox and Official)         |
+| :------------------ | :------------------------------ | :------------------------------------------ |
+| Voice ID            | `{serin-ko-happy}`              | `{serin}` \+ `language`, `style` parameters |
+| Style Specification | Included in voice ID            | Separated as `style` parameter              |
+| Model Name          | `"pro"`, `"turbo"`              | `"sona_speech_1"`                           |
+| Text Length         | Maximum 200 characters          | Maximum 300 characters                      |
+| Billing Method      | Post-payment (\$0.1 per minute) | Credit-based pricing (integrated with Play) |
 
 ### 📝 Notes
+
 - **Actual credits are deducted** in the sandbox environment,\
   so you must **charge credits through a plan registered in Play** before testing.
 - The existing post-payment system is no longer supported,\

@@ -3,6 +3,20 @@ title: "Step-by-Step Migration Flow"
 description: "Outlines the two-phase transition process from v1 → sandbox → v1 structure and tasks to be performed by timeline."
 ---
 
+<Warning>
+  ### The official version has been deployed as of now (after May 28, 2025).
+
+  The current official API version (`/v1/...`) **was deployed as of May 28, 2025**, and for new integrations, please no longer use sandbox endpoints and integrate the `/v1` **version instead.**
+
+  **If you are already integrated and using the sandbox:**\
+  You just need to modify the URL from `/sandbox/...` → `/v1/...` before June 6, 2025.
+
+  **If you have never integrated or used the sandbox:**\
+  You can skip this document and refer only to the official version documentation.
+
+  📄 Go to official documentation: [API Reference](/en/api-reference/introduction)
+</Warning>
+
 For transitioning from the existing API (v1) to the new call structure,\
 Supertone recommends the following **2-step migration flow**.\
 Each step **proceeds sequentially according to the schedule**, allowing you to test and apply changes without interruption through the sandbox.

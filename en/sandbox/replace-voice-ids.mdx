@@ -3,6 +3,20 @@ title: "Voice ID Conversion Guide"
 description: "Instructions on how to replace existing voice_id with new character-based IDs and how to use the mapping table."
 ---
 
+<Warning>
+  ### The official version has been deployed as of now (after May 28, 2025).
+
+  The current official API version (`/v1/...`) **was deployed as of May 28, 2025**, and for new integrations, please no longer use sandbox endpoints and integrate the `/v1` **version instead.**
+
+  **If you are already integrated and using the sandbox:**\
+  You just need to modify the URL from `/sandbox/...` → `/v1/...` before June 6, 2025.
+
+  **If you have never integrated or used the sandbox:**\
+  You can skip this document and refer only to the official version documentation.
+
+  📄 Go to official documentation: [API Reference](/en/api-reference/introduction)
+</Warning>
+
 In the sandbox environment, the existing voice ID system has been **completely revamped**.\
 The old complex voice IDs in the form of `{character-language-style}` will disappear,\
 and now you can call more concisely with a combination of ****`character-based voice_id + parameters (`**** `language, style)`.

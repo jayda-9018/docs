@@ -3,6 +3,20 @@ title: "Frequently Asked Questions (FAQ)"
 description: "We've compiled common issues and solutions related to the sandbox and structural changes. If you have any questions or problems during the service transition, please check here first."
 ---
 
+<Warning>
+  ### The official version has been deployed as of now (after May 28, 2025).
+
+  The current official API version (`/v1/...`) **was deployed as of May 28, 2025**, and for new integrations, please no longer use sandbox endpoints and integrate the `/v1` **version instead.**
+
+  **If you are already integrated and using the sandbox:**\
+  You just need to modify the URL from `/sandbox/...` → `/v1/...` before June 6, 2025.
+
+  **If you have never integrated or used the sandbox:**\
+  You can skip this document and refer only to the official version documentation.
+
+  📄 Go to official documentation: [API Reference](/en/api-reference/introduction)
+</Warning>
+
 <Accordion title="My existing voice_id no longer works.">
   In the sandbox, you cannot use the existing `{character-language-style}` format of voice_id.\
   Now only **character-based voice_id** is available, and style and language have been separated as parameters.
