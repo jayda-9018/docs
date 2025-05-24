@@ -1,4 +1,48 @@
 ---
-title: "New file"
-description: "Description of your new file."
+title: "Predict Duration"
+description: "音声を生成せずに予想長さのみを返すAPIで、課金予測やテキスト長調節に活用できます。"
+openapi: "/openapi.json POST /v1/predict-duration/{voice_id}"
 ---
+このAPIは**音声を実際に生成せず**、\
+入力されたテキストを基に予想音声長（秒単位）のみを返します。
+TTS呼び出し前に**予想クレジット消費量を把握したり、テキスト長を調節する際に有用**です。
+
+### 使用方式
+- 呼び出し方式とRequest Bodyは`text-to-speech` APIとほぼ同じです。
+- ただし、結果としてオーディオではなく`duration`値のみが返されます。
+- Predict Duration API呼び出し時には**クレジットが消費されません。**
+
+### Request Body項目説明
+| 項目               | 必須 | 説明                                     |
+| :--------------- | :-- | :------------------------------------- |
+| `text`           | ✅  | 分析対象テキスト。最大300文字                     |
+| `language`       | ✅  | テキスト言語。`ko`、`en`、`ja`のうち一つ          |
+| `style`          | ❌  | 感情スタイル。指定しない場合はdefaultスタイルが使用されます    |
+| `model`          | ❌  | デフォルト値は`sona_speech_1`。現在は該当モデルのみ使用可能 |
+| `voice_settings` | ❌  | 発話速度やピッチ調節値。結果長に影響を与える可能性があります       |
+
+### 使用例
+```http
+POST /v1/predict-duration/{voice_id}
+Content-Type: application/json
+x-sup-api-key: [YOUR_API_KEY]
+
+{
+  "text": "This is a long-form sentence for duration prediction.",
+  "language": "en",
+  "style": "neutral"
+}
+```
+
+### レスポンス例
+```json
+{
+  "duration": 3.57381983
+}
+```
+該当テキストを生成すると約3.57秒分のオーディオが作られるという意味です。
+
+### 活用のコツ
+- **クレジットは実際に差し引かれません。**（音声生成が行われないため）
+- 同じテキストを実際に呼び出す時とほぼ類似した結果を得ることができます。
+- `voice_settings.speed`を調節すると長さが変わるため、固定された発話速度でテストすることをお勧めします。
