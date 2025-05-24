@@ -1,59 +1,15 @@
 ---
 title: "Search Voices"
 description: "다양한 조건으로 보이스를 필터링할 수 있는 Search Voices API의 파라미터 사용법과 검색 예시를 설명합니다."
-openapi: "/openapi.json GET /sandbox/voices/search"
+openapi: "/openapi.json GET"
 ---
 
-**보이스를 조건에 따라 검색할 수 있는 API**입니다.\
-내 계정에서 사용 가능한 보이스(일반 \+ 클론 보이스 포함)를 이름, 언어, 스타일 등 다양한 조건으로 필터링할 수 있습니다.
+<Warning>
+  현재 보고 계신 문서는 `/sandbox/voices/search`에 대한 문서입니다.
 
-### 주요 파라미터
+  이와 동일한 기능은 `/v1/voices/search` 경로로 정식 배포되었으며,
 
-| 파라미터              | 설명                             | 예시                                          |
-| :---------------- | :----------------------------- | :------------------------------------------ |
-| `name`            | 보이스 이름으로 검색 (부분 일치)            | `My Voice` (→ 클론 보이스 찾기)                    |
-| `language`        | 보이스의 언어 코드 (쉼표로 다중 입력 가능)      | `ko`, `en`, `ja`                            |
-| `gender`          | 보이스의 성별 (쉼표로 다중 입력 가능)         | `male`, `female`                            |
-| `age`             | 보이스의 연령대                       | `teen`, `adult`, `senior` 등                 |
-| `use_case`        | 추천 사용처 기반 필터                   | `audiobook`, `narration`, `advertisement` 등 |
-| `style`           | 감정 스타일 필터                      | `neutral`, `happy`, `sad`, `angry` 등        |
-| `model`           | 지원하는 음성 모델 기준 필터               | `sona_speech_1` 등                           |
-| `page_size`       | 한 페이지당 항목 수 (기본값: 20, 최대: 100) | `50`                                        |
-| `next_page_token` | 페이지네이션을 위한 토큰                  | 이전 응답에서 받은 `nextPageToken` 값                |
+  새로운 연동 시에는 반드시 `/v1/voices/search`를 사용해 주세요.
 
-> ⚠️ `sort` 파라미터는 지원하지 않습니다.
-
-### 사용 예시 1: 클론드 보이스 찾기
-
-```http
-GET /sandbox/voices/search?name=My Voice
-```
-
-→ 내 계정에 등록된 클론드 보이스(예: `My Voice`)를 검색하여 `voice_id`를 얻을 수 있습니다.
-
-### 사용 예시 2: 스타일과 언어 조건 필터
-
-```http
-GET /sandbox/voices/search?style=happy&language=ko,en
-```
-
-→ 스타일에 happy가 포함되고, 언어에 한국어(ko)와 영어(en) 중 1개 이상이 포함되는 보이스만 조회됩니다.
-
-### 사용 예시 3: 페이지네이션 적용
-
-```http
-GET /sandbox/voices/search?page_size=50&next_page_token=eyJpZCI6IjEyMzQ1In0=
-```
-
-→ 50개 단위로 다음 페이지를 가져옵니다.\
-→ `next_page_token` 값은 이전 응답에서 받아올 수 있습니다.
-
-### 유의사항
-
-- 파라미터는 모두 **쉼표 구분으로 다중 조건(OR)을 입력할 수 있습니다.**
-
-  ```http
-  language=ko,en&style=happy,sad
-  ```
-- 존재하지 않는 조합을 입력하면 응답은 200 OK지만 결과가 비어 있을 수 있습니다.
-- 응답 구조는 `items` 배열과 `next_page_token` 값을 포함하며, 각 보이스의 `voice_id`, 스타일, 샘플 URL 등도 함께 제공됩니다.
+  👉 정식 문서 보기: [GET /v1/voices/search](/ko/api-reference/endpoints/search-voices)
+</Warning>
