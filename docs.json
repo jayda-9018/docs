@@ -29,7 +29,6 @@
               {
                 "group": "지원 및 리소스",
                 "pages": [
-                  "ko/user-guide/pricing-plan",
                   "ko/user-guide/rate-limits",
                   "ko/user-guide/handling-errors", 
                   "ko/user-guide/faq"
@@ -143,7 +142,6 @@
               {
                 "group": "サポートとリソース",
                 "pages": [
-                  "ja/user-guide/pricing-plan",
                   "ja/user-guide/rate-limits",
                   "ja/user-guide/handling-errors",
                   "ja/user-guide/faq"
@@ -257,7 +255,6 @@
               {
                 "group": "Support & Resources",
                 "pages": [
-                  "en/user-guide/pricing-plan",
                   "en/user-guide/rate-limits",
                   "en/user-guide/handling-errors",
                   "en/user-guide/faq"
@@ -446,7 +443,7 @@
     ]
   },
   "banner": {
-    "content": "샌드박스는 마이그레이션을 위한 임시 환경입니다. 2025년 6월 6일까지만 운영됩니다.",
+    "content": "Sandbox is a temporary migration environment, available until June 6, 2025.",
     "dismissible": true
   },
   "seo": {
