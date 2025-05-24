@@ -1,5 +1,26 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Get Credit Balance"
+description: "現在のアカウントの使用可能なクレジット残高を照会するシンプルなAPIです。"
+openapi: "/openapi.json GET /v1/credits"
 ---
+このAPIは現在のアカウントの**使用可能なクレジット残高**を照会します。\
+Supertone PlayとAPIは同じクレジットシステムを使用するため、PlayでチャージしたクレジットはAPIにもそのまま適用されます。
 
+### リクエスト方法
+```http
+GET /v1/credits
+x-sup-api-key: [YOUR_API_KEY]
+```
+
+### レスポンス例
+```json
+{
+  "balance": 146
+}
+```
+現在146クレジットが使用可能であることを意味します。
+
+### 参考事項
+- クレジットは**分単位**基準で課金されます。
+- クレジットは**PlayとAPIで共有**されます。
+- 新規加入時に基本体験クレジットが提供される場合があります。
