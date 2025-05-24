@@ -448,10 +448,6 @@
       }
     ]
   },
-  "banner": {
-    "content": "Sandbox is a temporary migration environment, available until June 6, 2025.",
-    "dismissible": true
-  },
   "seo": {
     "indexing": "all"
   }
