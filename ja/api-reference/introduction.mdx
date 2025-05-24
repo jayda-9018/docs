@@ -1,1 +1,34 @@
+---
+title: "Supertone API紹介"
+description: "Supertone APIの全体機能と構造を一目で紹介します。"
+---
+Supertone APIは、感情が生きている音声をテキストベースで合成できるRESTful APIです。Playと連動したボイスライブラリベースで、テキスト入力だけで自然な発話を生成でき、ボイス探索から使用量管理まで様々な機能を提供します。
 
+## 提供機能
+<CardGroup cols={1}>
+  <Card title="Text-to-Speech" icon="comment">
+    テキストを音声に変換します。ユーザーはボイスIDと共に言語、スタイル、モデル、詳細音声設定（pitch、speedなど）を渡すことができます。
+  </Card>
+  <Card title="ボイス探索" icon="magnifying-glass">
+    現在のアカウントで使用できるボイスを全体照会したり、言語、スタイル、名前などを条件として検索できます。
+  </Card>
+  <Card title="発話長予測" icon="crystal-ball">
+    音声を生成する前に、入力したテキストが何秒分のオーディオとして生成されるかを予測できます。
+    この機能はクレジットを差し引かずに呼び出し可能です。
+  </Card>
+  <Card title="クレジットと使用量確認" icon="credit-card">
+    アカウントの残りクレジット残高、APIを通じて使用した音声時間などを確認できるエンドポイントを提供します。
+  </Card>
+</CardGroup>
+
+## 文書構造
+- [認証](/ja/api-reference/authentication): APIを使用するための認証方法をご案内します。
+- エンドポイントリファレンス: 各機能別の呼び出し方法とレスポンス構造を確認できます。
+  - [GET /v1/voices](/ja/api-reference/endpoints/get-voices)
+  - [GET /v1/voices/search](/ja/api-reference/endpoints/search-voices)
+  - [POST /v1/text-to-speech](/ja/api-reference/endpoints/text-to-speech)
+  - [POST /v1/predict-duration](/ja/api-reference/endpoints/predit-duration)
+  - [GET /v1/voice-usage](/ja/api-reference/endpoints/get-voice-usage)
+  - [GET /v1/credits](/ja/api-reference/endpoints/get-credit-balance)
+
+正式リリース以降、Supertone APIは単純な呼び出し機能を超えて、Play、コンソール、ボイス生成機能を有機的に連結した**拡張可能な音声合成プラットフォーム**として運営されます。
