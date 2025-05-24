@@ -25,7 +25,22 @@ x-sup-api-key: [YOUR_API_KEY]
 보이스 ID는 텍스트를 어떤 목소리로 읽을지 결정하는 키입니다.
 현재 계정에서 사용 가능한 보이스는 다음 두 가지 방법으로 확인할 수 있습니다
 
-### Play에서 직접 확인하고 복사하기
+### Supertone Play에서 복사하기
+
+가장 손쉽게 보이스 ID를 확인하는 방법은 Supertone Play의 보이스 라이브러리에서 복사하는 것입니다.
+아래 예시 이미지에서처럼, 각 보이스 내의 'Copy voice ID' 버튼을 클릭하면 해당 보이스의 `voice_id`가 클립보드에 복사됩니다.
+
+<Frame>
+    <img src="/images/supertone-play-copy-voice-id-preset.png" />
+</Frame>
+
+클론드 보이스 역시 같은 방법으로 `voice_id`를 복사할 수 있습니다.
+
+<Frame>
+    <img src="/images/supertone-play-copy-voice-id-cloned.png" />
+</Frame>
+
+복사한 ID는 콘솔이나 API에서 바로 사용할 수 있습니다.
 
 ### 모든 보이스 한 번에 확인하기
 
@@ -45,297 +60,23 @@ GET /voices/search?language=ko&style=happy
 ```
 → 각 보이스의 id 필드를 확인해 실제 호출에 사용할 수 있습니다.
 
-## 3. 음
-<Steps>
-  <Step title="인증">
-    수퍼톤 API는 HTTP 요청 헤더를 통한 키 인증 방식을 사용합니다. API Key는 [개발자 콘솔 페이지](https://console.supertoneapi.com)에서 발급받아 사용하실 수 있습니다.
-  </Step>
-  <Step title="보이스 아이디 선택">
-    [Get Voices API](/ko/api-reference/endpoints/get-voices)를 호출하여 사용할 수 있는 보이스를 확인하세요. [Supertone Play](https://play.supertone.ai)에서 콘텐츠를 제작하며 다양한 보이스를 탐색한 뒤 선택할 수도 있습니다.
-  </Step>
-  <Step title="API 호출">
-    선택한 보이스 아이디로 [텍스트를 음성으로 변환하는 API](/ko/api-reference/endpoints/text-to-speech)를 호출할 수 있습니다.
-  </Step>
-</Steps>
+## 3. 음성 생성하기
 
-## 1. 인증
+보이스 ID를 확인했다면, 이제 실제로 텍스트를 음성으로 변환해볼 수 있습니다.
+아래는 기본적인 호출 예시입니다:
 
-모든 API 요청에는 인증이 필요합니다. API 키를 발급받아 HTTP 헤더에 포함하여 요청하세요.
+```http
+POST /text-to-speech/e5f6fb1a53d0add87afb4f
+Content-Type: application/json
+x-sup-api-key: [YOUR_API_KEY]
 
-### API 키 발급
-
-수퍼톤 API 키는 클로즈드 베타 서비스 승인 후 [콘솔 페이지](https://console.supertoneapi.com)에서 직접 발급받으실 수 있습니다.
-
-**발급 정책**
-
-1. 계정당 한 번에 최대 3개의 API 키 발급 가능
-   - 개발 환경별로 구분하여 사용하는 것을 권장합니다(ex. `Dev`, `Stage`, `Production`)
-2. 언제든지 키 폐기 및 재발급 가능
-    - 보안상의 이유로 키 교체가 필요한 경우
-    - 키 유출이 의심되는 경우
-    - 프로젝트 단위로 키를 구분하고 싶은 경우
-
-**발급 절차**
-
-1. [콘솔 페이지](https://console.supertoneapi.com) 로그인
-2. 사이드바 > API Keys 메뉴 접속
-3. ‘Create API Key’ 버튼을 클릭하여 키 발급 완료
-
-### API 인증
-
-수퍼톤 API는 HTTP 요청 헤더를 통한 API 키 인증 방식을 사용합니다.
-
-**헤더 구성**
-
-- 키: `x-sup-api-key`
-- 값: 발급받은 API 키
-- Base URL: `https://supertoneapi.com`
-
-모든 API 요청에는 반드시 이 인증 헤더가 포함되어야 합니다. 헤더가 누락되거나 잘못된 API 키가 제공될 경우 401 Unauthorized 응답이 반환됩니다.
-
-```bash
-x-sup-api-key: YOUR_API_KEY
-```
-
-**인증 코드 예제**
-
-각 프로그래밍 언어별 인증 구현 예제입니다.
-
-<CodeGroup>
-```bash curl
-curl -X GET "https://supertoneapi.com/v1/voices" \
-     -H "x-sup-api-key: YOUR_API_KEY"
-```
-
-```python Python
-import requests
-
-api_key = "YOUR_API_KEY"
-headers = {
-    "x-sup-api-key": api_key
-}
-
-response = requests.get(
-    "https://supertoneapi.com/v1/voices",
-    headers=headers
-)
-
-if response.status_code == 200:
-    voices = response.json()
-    print(voices)
-```
-
-```javascript JavaScript
-// Using Fetch API
-const apiKey = "YOUR_API_KEY";
-
-fetch("https://supertoneapi.com/v1/voices", {
-    method: "GET",
-    headers: {
-        "x-sup-api-key": apiKey
-    }
-})
-.then(response => response.json())
-.then(data => console.log(data))
-.catch(error => console.error("Error:", error));
-
-// Using Axios
-const axios = require('axios');
-
-const apiKey = "YOUR_API_KEY";
-const config = {
-    headers: { "x-sup-api-key": apiKey }
-};
-
-axios.get("https://supertoneapi.com/v1/voices", config)
-    .then(response => console.log(response.data))
-    .catch(error => console.error("Error:", error));
-```
-
-```php PHP
-<?php
-$api_key = "YOUR_API_KEY";
-$ch = curl_init();
-
-curl_setopt($ch, CURLOPT_URL, "https://supertoneapi.com/v1/voices");
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-    "x-sup-api-key: " . $api_key
-));
-
-$response = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-if ($httpCode == 200) {
-    $data = json_decode($response, true);
-    print_r($data);
-}
-
-curl_close($ch);
-?>
-```
-
-```go Go
-package main
-
-import (
-    "fmt"
-    "io/ioutil"
-    "net/http"
-)
-
-func main() {
-    apiKey := "YOUR_API_KEY"
-    client := &http.Client{}
-    
-    req, err := http.NewRequest("GET", "https://supertoneapi.com/v1/voices", nil)
-    if err != nil {
-        fmt.Printf("Error creating request: %v\n", err)
-        return
-    }
-    
-    req.Header.Add("x-sup-api-key", apiKey)
-    
-    resp, err := client.Do(req)
-    if err != nil {
-        fmt.Printf("Error making request: %v\n", err)
-        return
-    }
-    defer resp.Body.Close()
-    
-    body, err := ioutil.ReadAll(resp.Body)
-    if err != nil {
-        fmt.Printf("Error reading response: %v\n", err)
-        return
-    }
-    
-    if resp.StatusCode == 200 {
-        fmt.Printf("Response: %s\n", string(body))
-    }
-}
-```
-
-```java Java
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-
-public class SupertoneApiExample {
-    public static void main(String[] args) {
-        String apiKey = "YOUR_API_KEY";
-        
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://supertoneapi.com/v1/voices"))
-            .header("x-sup-api-key", apiKey)
-            .GET()
-            .build();
-
-        try {
-            HttpResponse<String> response = client.send(
-                request, 
-                HttpResponse.BodyHandlers.ofString()
-            );
-            
-            if (response.statusCode() == 200) {
-                System.out.println(response.body());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-}
-```
-</CodeGroup>
-
-**주의사항**
-
-- API 키는 노출되지 않도록 환경 변수나 설정 파일에 별도로 보관하여 관리하시기 바랍니다.
-- API 키가 노출된 경우 즉시 콘솔에서 해당 키를 폐기하고 새로운 키를 발급받으세요.
-- 모든 API 통신은 HTTPS를 통해 이루어지므로, SSL/TLS 인증서 관련 이슈가 없는지 확인하세요.
-- 401 오류가 발생하는 경우 API 키가 올바른지, 헤더 이름이 정확한지 확인하세요.
-
-## 2. 보이스 아이디 가져오기
-
-음성 생성을 위해서는 보이스 아이디를 지정해야 합니다. Get Voices API, Search Voices API를 호출하여 사용 가능한 보이스들을 확인하실 수 있습니다.
-
-**[Get Voices API](/ko/api-reference/endpoints/get-voices)를 호출해 확인**
-
-Get Voices API를 호출하여 사용 가능한 보이스 목록을 확인할 수 있습니다. API는 다음과 같은 형식의 JSON 응답을 반환합니다. JSON 응답 내 포함된 `voice_id`를 API 호출 시 파라미터로 입력합니다.
-
-```json
 {
-    "voices": [
-        {
-            "voice_id": "54CyP2zU9HCeLVCpzDRFPi",
-            "name": "Yoonho",
-            "description": "Yoonho is a sarcastic and indifferent teenager. He doesn't express his emotions well.",
-            "age": "young-adult",
-            "gender": "male",
-            "use_case": "game",
-            "language": "ko",
-            "style": "blank_high"
-        }
-    ]
+  "text": "안녕하세요, 수퍼톤 API입니다.",
+  "language": "ko",
+  "style": "neutral",
+  "model": "sona_speech_1"
 }
 ```
+응답은 오디오 파일 스트림 형식(WAV)으로 반환되며, 헤더의 X-Audio-Length 값을 통해 생성된 음성의 길이를 확인할 수 있습니다.
 
-**[Search Voices API](/ko/api-reference/endpoints/search-voices)를 호출해 확인**
-
-Search Voices API를 호출하여 다양한 키워드와 필터를 사용해 보이스를 검색할 수 있습니다. API는 다음과 같은 형식의 JSON 응답을 반환합니다. JSON 응답 내 포함된 `voice_id`를 API 호출 시 파라미터로 입력합니다.
-
-```json
-{
-  "voices": [
-    {
-      "voice_id": "<string>",
-      "name": "<string>",
-      "description": "<string>",
-      "age": "<string>",
-      "gender": "<string>",
-      "use_case": "<string>",
-      "language": "<string>",
-      "style": "<string>"
-    }
-  ],
-  "total": 123,
-  "page": 123,
-  "page_size": 123,
-  "total_pages": 123
-}
-```
-
-## 3. 음성 합성(Text-to-speech)
-
-선택한 보이스 아이디로 텍스트를 음성으로 변환합니다.
-
-### 기본 요청 예시
-
-```bash
-curl -X POST "https://supertoneapi.com/v1/text-to-speech?output_format=wav" \
-     -H "x-sup-api-key: YOUR_API_KEY" \
-     -H "Content-Type: application/json" \
-     -d '{
-           "voice_id": "54CyP2zU9HCeLVCpzDRFPi",
-           "language": "en",
-           "text": "Good morning. Rise and shine!"
-         }'
-```
-
-### 파일 형식 지정
-
-**지원 형식**
-
-`output_format` 쿼리 파라미터로 파일 형식을 지정할 수 있습니다.
-
-- wav: `?output_format=wav`
-- mp3: `?output_format=mp3`
-
-```bash
-# WAV 형식 요청
-https://supertoneapi.com/v1/text-to-speech?output_format=wav
-
-# MP3 형식 요청
-https://supertoneapi.com/v1/text-to-speech?output_format=mp3
-```
+이제 수퍼톤 API를 연동할 준비가 완료되었습니다. 이제 다음 단계로 넘어가, 더 다양한 설정과 고급 사용법을 확인해보세요.
