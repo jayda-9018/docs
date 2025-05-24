@@ -1,1 +1,31 @@
+---
+title: "認証"
+description: "Supertone APIはAPI Keyベースの認証方式を使用します。すべてのリクエストは発行されたAPI Keyをヘッダーに含めて認証する必要があります。"
+---
+## 1. API Key発行
+Supertone APIコンソールでサービス加入後、すぐにAPI Keyを発行できます。
+- アカウントにつき最大3つのAPI Keyを発行できます。
+- 流出時はコンソールで即座に削除・再発行が可能です。
 
+## 2. 認証方式
+Supertone APIは`x-sup-api-key`というカスタムHTTPヘッダーを使用して認証します。
+```http
+x-sup-api-key: [YOUR_API_KEY]
+```
+リクエスト時に必ずこのヘッダーを含める必要があり、漏れがあると認証エラーが発生します。
+
+## 3. 例
+```bash
+curl -X GET "https://supertoneapi.com/v1/voices" \
+  -H "x-sup-api-key: yourapikeyhere"
+```
+
+## 4. 認証失敗時
+- `401 Unauthorized`：API Keyが欠落しているか無効な時
+- `403 Forbidden`：そのリソースに対するアクセス権限がない時（例：クローンボイス権限なし）
+
+> エラー発生時は[エラー処理](/ja/user-guide/handling-errors)ガイドも併せて参照してください。
+
+## 5. セキュリティ注意事項
+- API Keyはクライアント側コードに露出させず、必ずサーバーサイドで安全に管理してください。
+- キーが外部に露出した場合、コンソールで即座に廃棄し、新しく発行する必要があります。
