@@ -11,7 +11,7 @@
   "navigation": {
     "versions": [
       {
-        "version": "한국어",
+        "version": "🇰🇷 한국어",
         "default": true,
         "tabs": [
           {
@@ -127,7 +127,7 @@
         }
       },
       {
-        "version": "日本語",
+        "version": "🇯🇵 日本語",
         "tabs": [
           {
             "tab": "ユーザーガイド",
@@ -242,7 +242,7 @@
         }
       },
       {
-        "version": "English",
+        "version": "🇺🇸 English",
         "tabs": [
           {
             "tab": "User Guide",
@@ -364,7 +364,7 @@
   },
   "favicon": "favicon.svg",
   "search": {
-    "prompt": "Search Documentation"
+    "prompt": "Search Docs"
   },
   "api": {
     "openapi": "/openapi.json",
