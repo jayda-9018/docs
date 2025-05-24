@@ -1,1 +1,49 @@
+---
+title: "Search Voices"
+description: "様々な条件でボイスをフィルタリングできるSearch Voices APIのパラメータ使用法と検索例を説明します。"
+openapi: "/openapi.json GET /v1/voices/search"
+---
+**ボイスを条件に応じて検索できるAPI**です。\
+自分のアカウントで使用可能なボイス（一般＋クローンボイス含む）を名前、言語、スタイルなど様々な条件でフィルタリングできます。
 
+### 主要パラメータ
+| パラメータ              | 説明                             | 例                                          |
+| :---------------- | :----------------------------- | :------------------------------------------ |
+| `name`            | ボイス名で検索（部分一致）            | `My Voice`（→ クローンボイス検索）                    |
+| `language`        | ボイスの言語コード（カンマで複数入力可能）      | `ko`、`en`、`ja`                            |
+| `gender`          | ボイスの性別（カンマで複数入力可能）         | `male`、`female`                            |
+| `age`             | ボイスの年齢層                       | `teen`、`adult`、`senior`など                 |
+| `use_case`        | 推奨用途ベースフィルター                   | `audiobook`、`narration`、`advertisement`など |
+| `style`           | 感情スタイルフィルター                      | `neutral`、`happy`、`sad`、`angry`など        |
+| `model`           | サポートする音声モデル基準フィルター               | `sona_speech_1`など                           |
+| `page_size`       | 1ページ当たり項目数（デフォルト：20、最大：100） | `50`                                        |
+| `next_page_token` | ページネーション用トークン                  | 前のレスポンスで受け取った`nextPageToken`値                |
+
+> ⚠️ `sort`パラメータはサポートしていません。
+
+### 使用例1：クローンボイス検索
+```http
+GET /v1/voices/search?name=My Voice
+```
+→ 自分のアカウントに登録されたクローンボイス（例：`My Voice`）を検索して`voice_id`を取得できます。
+
+### 使用例2：スタイルと言語条件フィルター
+```http
+GET /v1/voices/search?style=happy&language=ko,en
+```
+スタイルにhappyが含まれ、言語に韓国語（ko）と英語（en）のうち1つ以上が含まれるボイスのみが照会されます。
+
+### 使用例3：ページネーション適用
+```http
+GET /v1/voices/search?page_size=50&next_page_token=eyJpZCI6IjEyMzQ1In0=
+```
+-  50個単位で次のページを取得します。
+- `next_page_token`値は前のレスポンスから取得できます。
+
+### 注意事項
+- パラメータはすべて**カンマ区切りで複数条件（OR）を入力できます。**
+  ```http
+  language=ko,en&style=happy,sad
+  ```
+- 存在しない組み合わせを入力すると、レスポンスは200 OKですが結果が空になる可能性があります。
+- レスポンス構造は`items`配列と`next_page_token`値を含み、各ボイスの`voice_id`、スタイル、サンプルURLなども一緒に提供されます。
