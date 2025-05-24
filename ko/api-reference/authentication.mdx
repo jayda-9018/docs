@@ -1,1 +1,41 @@
+---
+title: "인증"
+description: "Supertone API는 API Key 기반 인증 방식을 사용합니다. 모든 요청은 발급받은 API Key를 헤더에 포함해 인증해야 합니다."
+---
 
+## 1. API Key 발급
+
+Supertone API 콘솔에서 서비스 가입 후 바로 API Key를 발급받을 수 있습니다.
+
+- 계정당 최대 3개의 API Key를 발급받을 수 있습니다.
+- 유출 시 콘솔에서 즉시 삭제 및 재발급이 가능합니다.
+
+## 2. 인증 방식
+
+Supertone API는 `x-sup-api-key`라는 커스텀 HTTP 헤더를 사용해 인증합니다.
+
+```http
+x-sup-api-key: [YOUR_API_KEY]
+```
+
+요청 시 반드시 이 헤더를 포함해야 하며, 누락되면 인증 오류가 발생합니다.
+
+## 3. 예시
+
+```bash
+curl -X GET "https://supertoneapi.com/v1/voices" \
+
+  -H "x-sup-api-key: yourapikeyhere"
+```
+
+## 4. 인증 실패 시
+
+- `401 Unauthorized`: API Key가 누락되었거나 유효하지 않을 때
+- `403 Forbidden`: 해당 리소스에 대한 접근 권한이 없을 때 (예: 클론드 보이스 권한 없음)
+
+> 오류 발생 시 [오류 처리](/ko/user-guide/handling-errors) 가이드를 함께 참고해 주세요.
+
+## 5. 보안 주의사항
+
+- API Key는 클라이언트 측 코드에 노출하지 말고, 반드시 서버 사이드에서 안전하게 관리해 주세요.
+- 키가 외부에 노출되었을 경우, 콘솔에서 즉시 폐기하고 새로 발급받아야 합니다.
