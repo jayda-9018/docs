@@ -74,31 +74,6 @@
                 ]
               }
             ]
-          },
-          {
-            "tab": "샌드박스",
-            "groups": [
-              {
-                "group": "샌드박스 이용하기",
-                "pages": [
-                  "ko/sandbox/important-notice",
-                  "ko/sandbox/2-step-migration",
-                  "ko/sandbox/replace-voice-ids",
-                  "ko/sandbox/faq"
-                ]
-              },
-              {
-                "group": "샌드박스 엔드포인트",
-                "pages": [
-                  "ko/sandbox/endpoints/get-voices",
-                  "ko/sandbox/endpoints/search-voices",
-                  "ko/sandbox/endpoints/text-to-speech",
-                  "ko/sandbox/endpoints/predict-duration",
-                  "ko/sandbox/endpoints/get-voice-usage",
-                  "ko/sandbox/endpoints/get-credit-balance"
-                ]
-              }
-            ]
           }
         ],
         "global": {
@@ -189,31 +164,6 @@
                 ]
               }
             ]
-          },
-          {
-            "tab": "サンドボックス",
-            "groups": [
-              {
-                "group": "サンドボックスの使用",
-                "pages": [
-                  "ja/sandbox/important-notice",
-                  "ja/sandbox/2-step-migration",
-                  "ja/sandbox/replace-voice-ids",
-                  "ja/sandbox/faq"
-                ]
-              },
-              {
-                "group": "サンドボックスエンドポイント",
-                "pages": [
-                  "ja/sandbox/endpoints/get-voices",
-                  "ja/sandbox/endpoints/search-voices",
-                  "ja/sandbox/endpoints/text-to-speech",
-                  "ja/sandbox/endpoints/predict-duration",
-                  "ja/sandbox/endpoints/get-voice-usage",
-                  "ja/sandbox/endpoints/get-credit-balance"
-                ]
-              }
-            ]
           }
         ],
         "global": {
@@ -301,31 +251,6 @@
                 "pages": [
                   "en/api-reference/endpoints/get-voice-usage",
                   "en/api-reference/endpoints/get-credit-balance"
-                ]
-              }
-            ]
-          },
-          {
-            "tab": "Sandbox",
-            "groups": [
-              {
-                "group": "Using the Sandbox",
-                "pages": [
-                  "en/sandbox/important-notice",
-                  "en/sandbox/2-step-migration",
-                  "en/sandbox/replace-voice-ids",
-                  "en/sandbox/faq"
-                ]
-              },
-              {
-                "group": "Sandbox Endpoints",
-                "pages": [
-                  "en/sandbox/endpoints/get-voices",
-                  "en/sandbox/endpoints/search-voices",
-                  "en/sandbox/endpoints/text-to-speech",
-                  "en/sandbox/endpoints/predict-duration",
-                  "en/sandbox/endpoints/get-voice-usage",
-                  "en/sandbox/endpoints/get-credit-balance"
                 ]
               }
             ]
